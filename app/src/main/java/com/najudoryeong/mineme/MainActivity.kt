@@ -7,6 +7,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.najudoryeong.mineme.databinding.ActivityMainBinding
 
+
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
@@ -20,14 +21,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initBottomNav() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragment_containerView) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_containerView) as NavHostFragment
         val navController = navHostFragment.navController
 
         binding.bottomNavigationView.let {
             it.setupWithNavController(navController)
             it.itemIconTintList = null
         }
+
     }
 
     private fun initAppBar() {
