@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        initAppBar()
         initBottomNav()
     }
 
@@ -29,4 +30,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun initAppBar() {
+        setSupportActionBar(binding.toolbar)
+        supportActionBar?.run {
+            setDisplayShowTitleEnabled(false) //title제거
+            setDisplayHomeAsUpEnabled(true)
+        }
+    }
 }
