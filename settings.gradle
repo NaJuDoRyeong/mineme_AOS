@@ -14,3 +14,5 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Mineme"
 include ':app'
+include ':story'
+include ':common-ui'
