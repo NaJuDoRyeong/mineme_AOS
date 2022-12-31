@@ -16,3 +16,4 @@ rootProject.name = "Mineme"
 include ':app'
 include ':story'
 include ':common-ui'
+include ':home'
