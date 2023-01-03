@@ -1,18 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="22dp"
         tools:context=".SettingFragment">
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="@string/hello_blank_fragment" />
 
-    </FrameLayout>
+        <TextView
+            style="@style/SettingMainTV"
+            android:text="@string/account"
+            app:drawableStartCompat="@drawable/img_person"
+            tools:drawableStart="@drawable/img_person" />
+
+        <View style="@style/Contour" />
+
+        <TextView
+            style="@style/SettingMainTV"
+            android:text="@string/notification"
+            app:drawableStartCompat="@drawable/img_notification"
+            tools:drawableStart="@drawable/img_notification" />
+
+        <View style="@style/Contour" />
+
+        <TextView
+            style="@style/SettingMainTV"
+            android:text="@string/security"
+            app:drawableStartCompat="@drawable/img_security"
+            tools:drawableStart="@drawable/img_security" />
+
+        <View style="@style/Contour" />
+
+        <TextView
+            style="@style/SettingMainTV"
+            android:text="@string/notice"
+            app:drawableStartCompat="@drawable/img_person"
+            tools:drawableStart="@drawable/img_person" />
+
+        <View style="@style/Contour" />
+
+        <TextView
+            style="@style/SettingMainTV"
+            android:text="@string/inquiry"
+            app:drawableStartCompat="@drawable/img_person"
+            tools:drawableStart="@drawable/img_person" />
+
+        <View style="@style/Contour" />
+
+    </LinearLayout>
 
 </layout>
