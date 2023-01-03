@@ -10,6 +10,8 @@ import com.najudoryeong.mineme.story.databinding.FragmentStoryBinding
 
 class StoryFragment : BaseFragment<FragmentStoryBinding>(Story){
 
+    override fun initView() {
 
+    }
 
 }

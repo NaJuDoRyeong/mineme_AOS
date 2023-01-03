@@ -1,7 +1,7 @@
 package com.najudoryeong.mineme.common_ui
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+import androidx.navigation.NavController
+
 
 interface MainViewModelUtil{
     fun setToolbarTitle(newTitle: String)

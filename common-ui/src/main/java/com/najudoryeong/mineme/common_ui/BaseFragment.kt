@@ -16,6 +16,9 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
     private var _binding: T? = null
     val binding get() = _binding!!
 
+    // baseFragment를 상속받은 fragment에서만 제한된 작업 initView 에서 진행
+    abstract fun initView()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -32,9 +35,9 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        initView()
         initMenu()
     }
-
 
     private fun initMenu() {
         val menuHost: MenuHost = requireActivity()
@@ -42,30 +45,22 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
         menuHost.addMenuProvider(object : MenuProvider {
 
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(fragment.menu, menu)
+                if (fragment.menu != -1) {
+                    menuInflater.inflate(fragment.menu, menu)
+                }
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
                 val navController = findNavController()
 
-                /**
-                 *
                 with(navController) {
-                when (menuItem.itemId) {
-                android.R.id.home -> {
-                popBackStack()
+                    when (menuItem.itemId) {
+                        android.R.id.home -> {
+                            popBackStack()
+                        }
+                        else -> {}
+                    }
                 }
-                R.id.menu_ProfileSetting -> {
-                navigate(R.id.action_homeFragment_to_profileSettingFragment)
-                }
-                R.id.menu_WritingStory -> {
-                navigate(R.id.action_storyFragment_to_writingStoryFragment)
-                }
-                else -> {}
-                }
-                }
-                 */
-
                 return true
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)

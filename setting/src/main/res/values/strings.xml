@@ -1,0 +1,13 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="setting">설정</string>
+    <string name="account">계정</string>
+    <string name="notification">알림</string>
+    <string name="security">보안</string>
+    <string name="notice">공지사항</string>
+    <string name="inquiry">문의하기</string>
+    <string name="my_code">나의 코드</string>
+    <string name="target_code">상대 코드</string>
+    <string name="account_management">계정관리</string>
+</resources>
