@@ -3,9 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/storyFragment">
+    app:startDestination="@id/home">
     <fragment
-        android:id="@+id/storyFragment"
+        android:id="@+id/story"
         android:name="com.najudoryeong.mineme.story.StoryFragment"
         android:label="StoryFragment" />
+    <fragment
+        android:id="@+id/home"
+        android:name="com.najudoryeong.mineme.home.HomeFragment"
+        android:label="HomeFragment" />
 </navigation>
