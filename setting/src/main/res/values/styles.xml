@@ -20,4 +20,26 @@
         <item name="android:background">#EAEAEA</item>
     </style>
 
+    <style name="SettingTextView" parent="Widget.AppCompat.TextView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="fontFamily">@font/cafe24_ssurround_air</item>
+        <item name="android:textColor">@color/BoldTextColor</item>
+        <item name="android:paddingStart">@dimen/margin_normal</item>
+        <item name="android:paddingEnd">@dimen/margin_normal</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="SettingLabel" parent="Widget.AppCompat.TextView">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+        <item name="fontFamily">@font/cafe24_ssurround_air</item>
+        <item name="android:paddingStart">@dimen/margin_normal</item>
+        <item name="android:paddingEnd">@dimen/margin_normal</item>
+        <item name="android:textColor">@color/BoldTextColor</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
 </resources>

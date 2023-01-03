@@ -2,17 +2,87 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragment.SettingAccountFragment">
+        android:orientation="vertical">
 
-        <!-- TODO: Update blank fragment layout -->
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="계정" />
+            style="@style/SettingLabel"
+            android:layout_marginTop="22dp"
+            android:text="@string/account" />
 
-    </FrameLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/SettingTextView"
+                android:layout_weight="1"
+                android:text="@string/my_code" />
+
+            <TextView
+                android:id="@+id/my_code"
+                style="@style/SettingTextView"
+                android:layout_weight="1"
+                android:gravity="end|center_vertical"
+                android:text="AX123456" />
+
+        </LinearLayout>
+
+        <View style="@style/Contour"/>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/SettingTextView"
+                android:layout_weight="1"
+                android:text="@string/target_code" />
+
+            <TextView
+                android:id="@+id/target_code"
+                style="@style/SettingTextView"
+                android:layout_weight="1"
+                android:gravity="end|center_vertical"
+                android:text="BX123456" />
+
+        </LinearLayout>
+
+        <View style="@style/Contour"/>
+
+
+        <TextView
+            style="@style/SettingLabel"
+            android:layout_marginTop="60dp"
+            android:text="@string/account_management" />
+
+        <TextView
+            style="@style/SettingTextView"
+            android:layout_width="match_parent"
+            android:gravity="start|center_vertical"
+            android:text="계정 초기화" />
+
+        <View style="@style/Contour"/>
+
+        <TextView
+            style="@style/SettingTextView"
+            android:layout_width="match_parent"
+            android:text="로그아웃" />
+
+        <View style="@style/Contour"/>
+
+        <TextView
+            style="@style/SettingTextView"
+            android:layout_width="match_parent"
+            android:text="계정 탈퇴" />
+
+        <View style="@style/Contour"/>
+
+    </LinearLayout>
 
 </layout>

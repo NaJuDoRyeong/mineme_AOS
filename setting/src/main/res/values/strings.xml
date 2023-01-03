@@ -7,4 +7,7 @@
     <string name="security">보안</string>
     <string name="notice">공지사항</string>
     <string name="inquiry">문의하기</string>
+    <string name="my_code">나의 코드</string>
+    <string name="target_code">상대 코드</string>
+    <string name="account_management">계정관리</string>
 </resources>
