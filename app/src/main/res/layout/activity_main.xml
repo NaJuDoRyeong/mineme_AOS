@@ -16,8 +16,10 @@
         tools:context=".MainActivity">
 
         <com.google.android.material.appbar.AppBarLayout
+            app:elevation="0dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#00000000">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
