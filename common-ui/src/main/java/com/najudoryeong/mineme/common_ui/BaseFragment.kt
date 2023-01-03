@@ -42,7 +42,9 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
         menuHost.addMenuProvider(object : MenuProvider {
 
             override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
-                menuInflater.inflate(fragment.menu, menu)
+                if (fragment.menu != -1){
+                    menuInflater.inflate(fragment.menu, menu)
+                }
             }
 
             override fun onMenuItemSelected(menuItem: MenuItem): Boolean {

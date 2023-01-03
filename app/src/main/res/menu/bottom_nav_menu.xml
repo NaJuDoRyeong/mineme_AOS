@@ -22,7 +22,7 @@
         android:title="" />
 
     <item
-        android:id="@+id/settings"
+        android:id="@+id/setting"
         android:icon="@drawable/bottom_setting_on_off"
         android:title="" />
 
