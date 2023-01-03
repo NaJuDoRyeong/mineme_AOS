@@ -8,10 +8,11 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingTop="22dp"
-        tools:context=".SettingFragment">
+        tools:context=".fragment.SettingFragment">
 
 
         <TextView
+            android:id="@+id/to_accountTV"
             style="@style/SettingMainTV"
             android:text="@string/account"
             app:drawableStartCompat="@drawable/img_person"
@@ -20,6 +21,7 @@
         <View style="@style/Contour" />
 
         <TextView
+            android:id="@+id/to_notificationTV"
             style="@style/SettingMainTV"
             android:text="@string/notification"
             app:drawableStartCompat="@drawable/img_notification"
@@ -28,6 +30,7 @@
         <View style="@style/Contour" />
 
         <TextView
+            android:id="@+id/to_securityTV"
             style="@style/SettingMainTV"
             android:text="@string/security"
             app:drawableStartCompat="@drawable/img_security"
@@ -36,6 +39,7 @@
         <View style="@style/Contour" />
 
         <TextView
+            android:id="@+id/to_noticeTV"
             style="@style/SettingMainTV"
             android:text="@string/notice"
             app:drawableStartCompat="@drawable/img_person"
@@ -44,6 +48,7 @@
         <View style="@style/Contour" />
 
         <TextView
+            android:id="@+id/to_inquiryTV"
             style="@style/SettingMainTV"
             android:text="@string/inquiry"
             app:drawableStartCompat="@drawable/img_person"

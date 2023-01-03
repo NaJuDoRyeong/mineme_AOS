@@ -11,4 +11,10 @@ import com.najudoryeong.mineme.home.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(Home) {
 
+    override fun initView() {
+        binding.apply {
+
+        }
+    }
+
 }

@@ -4,19 +4,20 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.Observable
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.najudoryeong.mineme.common_ui.FragmentInfoUtil
+import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.common_ui.MainViewModelUtil
 import com.najudoryeong.mineme.databinding.ActivityMainBinding
 
 // 하위 모듈이 MainViewModel 코드에 접근할 수 있게 MainViewModelUtil 상속 구현
-class MainActivity : AppCompatActivity(), MainViewModelUtil {
+class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
 
     private lateinit var binding: ActivityMainBinding
     private lateinit var appBarConfiguration: AppBarConfiguration
@@ -29,7 +30,6 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil {
 
         binding.viewModel = model
         model.toolbarTitle.observe(this, toolbarTitleObserver)
-
         initAppBar()
         initBottomNav()
     }
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil {
         // appbar 구성 요소 설정
         // 바텀네비게이션과 연결하면 해당 프래그먼트에 네비게이션으로는 backButton x
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.home,R.id.story,R.id.setting)
+            setOf(R.id.home, R.id.story, R.id.setting)
         )
 
         // navController와 actionbar 연결
@@ -59,6 +59,16 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil {
         supportActionBar?.run {
             setDisplayShowTitleEnabled(false) //title제거
             setDisplayHomeAsUpEnabled(true)
+        }
+
+    }
+
+    // layoutID로 navigate
+    override fun navigate(start: Fragment, dest: FragmentInfoUtil) {
+        DirectionMapping.values().firstOrNull {
+            it.layoutID == dest.layoutID
+        }?.run {
+            start.findNavController().navigate(actionID)
         }
     }
 
