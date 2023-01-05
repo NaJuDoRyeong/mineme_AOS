@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+todo 공통 사용 리소스 common_ui
+-->
+<resources>
+
+    <style name="Contour">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">#EAEAEA</item>
+    </style>
+
+</resources>

@@ -1,23 +1,22 @@
 plugins {
-    id 'com.android.application'
+    id 'com.android.library'
     id 'org.jetbrains.kotlin.android'
-    id 'androidx.navigation.safeargs.kotlin'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
 }
 
+
+
 android {
-    namespace 'com.najudoryeong.mineme'
-    compileSdk 33
+    namespace 'com.najudoryeong.mineme.onboarding'
+    compileSdk 32
 
     defaultConfig {
-        applicationId "com.najudoryeong.mineme"
         minSdk 23
-        targetSdk 33
-        versionCode 1
-        versionName "1.0"
+        targetSdk 32
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
     }
 
     buildTypes {
@@ -41,11 +40,6 @@ android {
 dependencies {
 
     api project(path: ':common-ui')
-    api project(path: ':story')
-    api project(path: ':home')
-    api project(path: ':setting')
-    api project(path: ':onboarding')
-
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"
@@ -53,12 +47,7 @@ dependencies {
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$rootProject.hiltVersion"
 
-
-    api "androidx.navigation:navigation-fragment-ktx:$rootProject.nav_version"
-    api "androidx.navigation:navigation-ui-ktx:$rootProject.nav_version"
-
-
-    implementation 'androidx.core:core-ktx:1.9.0'
+    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'

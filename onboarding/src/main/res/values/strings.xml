@@ -1,0 +1,10 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="onboarding1_main">우리의 추억을 소중하고\n이쁘게 보관해요</string>
+    <string name="onboarding1_semi">마인미에서 갤러리에 퍼져있는\n우리의 사진을 위치별로 기록해요.</string>
+    <string name="onboarding2_main">둘만의 소식을\n빠르게 전해줄게요</string>
+    <string name="onboarding2_semi">기념일이나 피드 올라온걸 몰라서\n관리하지 않게 마인미가 알려줄게요!</string>
+    <string name="onboarding3_main">사랑스러운 사진으로\n하루하루 기억해봐요</string>
+    <string name="onboarding3_semi">캘린더를 우리의 사진으로 꾸며서\n한달을 추억으로 가득채워요.</string>
+</resources>
