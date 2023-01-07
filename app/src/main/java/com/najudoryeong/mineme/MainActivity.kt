@@ -2,9 +2,18 @@ package com.najudoryeong.mineme
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.RelativeLayout
+import android.widget.RelativeLayout.LayoutParams
 import androidx.activity.viewModels
+import androidx.core.view.marginTop
+import androidx.core.view.setMargins
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainer
+import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -29,7 +38,13 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         binding.viewModel = model
-        model.toolbarTitle.observe(this, toolbarTitleObserver)
+
+        with(model) {
+            toolbarTitle.observe(this@MainActivity, toolbarTitleObserver)
+            visibilityBottomAppbar.observe(this@MainActivity, visibilityBottomAppBarObserver)
+            visibilityTopAppBar.observe(this@MainActivity, visibilityTopAppBarObserver)
+        }
+
         initAppBar()
         initBottomNav()
     }
@@ -45,7 +60,7 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
             setOf(R.id.home, R.id.story, R.id.setting)
         )
 
-        // navController와 actionbar 연결
+        // navController 와 actionbar 연결
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
 
         binding.bottomNavigationView.run {
@@ -77,9 +92,26 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
         model.updateToolbarTitle(newTitle)
     }
 
-    //toolbar title 옵저버
+    override fun setVisibilityBottomAppbar(visibilityMode: Int) {
+        model.updateVisibilityBottomAppbar(visibilityMode)
+    }
+
+    override fun setVisibilityTopAppBar(visibilityMode: Int) {
+        model.updateVisibilityTopAppBar(visibilityMode)
+    }
+
+    //옵저버
     private val toolbarTitleObserver = Observer<String> {
         binding.toolbar.title = it
+    }
+
+    private val visibilityBottomAppBarObserver = Observer<Int> {
+        binding.bottomAppBar.visibility = it
+        binding.fab.visibility = it
+    }
+
+    private val visibilityTopAppBarObserver = Observer<Int> {
+        binding.topAppBar.visibility = it
     }
 
 

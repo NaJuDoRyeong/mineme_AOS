@@ -47,6 +47,16 @@ dependencies {
     kaptAndroidTest "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
     androidTestImplementation "com.google.dagger:hilt-android-testing:$rootProject.hiltVersion"
 
+
+    // Fragment
+    api "androidx.fragment:fragment:$rootProject.fragment_version"
+    api "androidx.fragment:fragment-ktx:$rootProject.fragment_version"
+
+
+    //todo replace custom
+    implementation 'me.relex:circleindicator:2.1.6'
+
+
     implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.5.1'
     implementation 'com.google.android.material:material:1.7.0'

@@ -41,7 +41,7 @@ class SplashActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun startLogin(){
+    private fun startLogin() {
         //todo login 처리 프로세스
     }
     private fun startOnBoarding(){

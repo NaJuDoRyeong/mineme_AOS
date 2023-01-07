@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/home">
+    app:startDestination="@id/onBoardingViewPagerFragment">
     <fragment
         android:id="@+id/story"
         android:name="com.najudoryeong.mineme.story.StoryFragment"
@@ -52,4 +52,8 @@
         android:id="@+id/settingSecurityFragment"
         android:name="com.najudoryeong.mineme.setting.fragment.SettingSecurityFragment"
         android:label="SettingSecurityFragment" />
+    <fragment
+        android:id="@+id/onBoardingViewPagerFragment"
+        android:name="com.najudoryeong.mineme.onboarding.OnBoardingViewPagerFragment"
+        android:label="OnBoardingViewPagerFragment" />
 </navigation>

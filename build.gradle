@@ -10,6 +10,7 @@ buildscript {
     ext {
         hiltVersion = '2.44'
         nav_version = '2.5.3'
+        fragment_version = "1.5.5"
     }
 
     dependencies {

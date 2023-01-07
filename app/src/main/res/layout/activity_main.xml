@@ -8,6 +8,7 @@
         <variable
             name="viewModel"
             type="com.najudoryeong.mineme.MainViewModel" />
+
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -15,29 +16,37 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
-        <com.google.android.material.appbar.AppBarLayout
-            app:elevation="0dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#00000000">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:titleCentered="true" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
-
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/fragment_containerView"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph" />
+            android:orientation="vertical">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/topAppBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#00000000"
+                app:elevation="0dp">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:titleCentered="true" />
+
+            </com.google.android.material.appbar.AppBarLayout>
+
+
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/fragment_containerView"
+                android:name="androidx.navigation.fragment.NavHostFragment"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:defaultNavHost="true"
+                app:navGraph="@navigation/nav_graph" />
+
+        </LinearLayout>
+
 
         <com.google.android.material.bottomappbar.BottomAppBar
             android:id="@+id/bottomAppBar"
@@ -66,11 +75,13 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginBottom="20dp"
+            android:contentDescription="TODO"
             android:src="@drawable/bottom_center"
             app:fabSize="normal"
             app:layout_anchor="@id/bottomAppBar"
             app:maxImageSize="47dp"
             app:tint="@null" />
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
