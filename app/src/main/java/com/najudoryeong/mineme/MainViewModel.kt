@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 
 
 class MainViewModel : ViewModel() {
-
+/*
     private val _toolbarTitle = MutableLiveData<String>()
     val toolbarTitle: LiveData<String>
         get() = _toolbarTitle
@@ -31,5 +31,5 @@ class MainViewModel : ViewModel() {
     fun updateVisibilityTopAppBar(visibilityMode: Int){
         _visibilityTopAppBar.value = visibilityMode
     }
-
+*/
 }

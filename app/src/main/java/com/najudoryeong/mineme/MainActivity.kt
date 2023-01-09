@@ -36,14 +36,7 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         binding.viewModel = model
-
-        with(model) {
-            toolbarTitle.observe(this@MainActivity, toolbarTitleObserver)
-            visibilityBottomAppbar.observe(this@MainActivity, visibilityBottomAppBarObserver)
-            visibilityTopAppBar.observe(this@MainActivity, visibilityTopAppBarObserver)
-        }
 
         initAppBar()
         initBottomNav()
@@ -89,30 +82,16 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
 
     /** [MainViewModelUtil] */
     override fun setToolbarTitle(newTitle: String) {
-        model.updateToolbarTitle(newTitle)
+        binding.toolbar.title = newTitle
     }
 
     override fun setVisibilityBottomAppbar(visibilityMode: Int) {
-        model.updateVisibilityBottomAppbar(visibilityMode)
+        binding.bottomAppBar.visibility = visibilityMode
+        binding.fab.visibility = visibilityMode
     }
 
     override fun setVisibilityTopAppBar(visibilityMode: Int) {
-        model.updateVisibilityTopAppBar(visibilityMode)
+        binding.topAppBar.visibility = visibilityMode
     }
-
-    //옵저버
-    private val toolbarTitleObserver = Observer<String> {
-        binding.toolbar.title = it
-    }
-
-    private val visibilityBottomAppBarObserver = Observer<Int> {
-        binding.bottomAppBar.visibility = it
-        binding.fab.visibility = it
-    }
-
-    private val visibilityTopAppBarObserver = Observer<Int> {
-        binding.topAppBar.visibility = it
-    }
-
 
 }
