@@ -8,7 +8,7 @@
         android:orientation="vertical">
 
         <TextView
-            style="@style/SettingLabel"
+            style="@style/LabelText"
             android:layout_marginTop="22dp"
             android:text="@string/account" />
 
@@ -18,13 +18,13 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/SettingTextView"
+                style="@style/BasicText"
                 android:layout_weight="1"
                 android:text="@string/my_code" />
 
             <TextView
                 android:id="@+id/my_code"
-                style="@style/SettingTextView"
+                style="@style/BasicText"
                 android:layout_weight="1"
                 android:gravity="end|center_vertical"
                 android:text="AX123456" />
@@ -40,13 +40,13 @@
             android:orientation="horizontal">
 
             <TextView
-                style="@style/SettingTextView"
+                style="@style/BasicText"
                 android:layout_weight="1"
                 android:text="@string/target_code" />
 
             <TextView
                 android:id="@+id/target_code"
-                style="@style/SettingTextView"
+                style="@style/BasicText"
                 android:layout_weight="1"
                 android:gravity="end|center_vertical"
                 android:text="BX123456" />
@@ -57,12 +57,12 @@
 
 
         <TextView
-            style="@style/SettingLabel"
+            style="@style/LabelText"
             android:layout_marginTop="60dp"
             android:text="@string/account_management" />
 
         <TextView
-            style="@style/SettingTextView"
+            style="@style/BasicText"
             android:layout_width="match_parent"
             android:gravity="start|center_vertical"
             android:text="계정 초기화" />
@@ -70,14 +70,14 @@
         <View style="@style/Contour"/>
 
         <TextView
-            style="@style/SettingTextView"
+            style="@style/BasicText"
             android:layout_width="match_parent"
             android:text="로그아웃" />
 
         <View style="@style/Contour"/>
 
         <TextView
-            style="@style/SettingTextView"
+            style="@style/BasicText"
             android:layout_width="match_parent"
             android:text="계정 탈퇴" />
 

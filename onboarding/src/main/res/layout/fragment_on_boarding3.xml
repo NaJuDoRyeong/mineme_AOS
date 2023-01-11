@@ -12,7 +12,6 @@
             android:id="@+id/onboarding1_mainTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="88dp"
             android:gravity="center"
             android:text="@string/onboarding3_main"
             android:textColor="@color/bold_text_color"

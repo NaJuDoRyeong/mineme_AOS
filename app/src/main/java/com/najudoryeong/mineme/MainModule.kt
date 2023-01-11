@@ -1,5 +1,6 @@
 package com.najudoryeong.mineme
 
+import com.najudoryeong.mineme.home.Home
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,4 +13,5 @@ class MainModule {
     @Singleton
     @Provides
     fun provideMainActivityClass(): Class<*> = MainActivity::class.java
+
 }

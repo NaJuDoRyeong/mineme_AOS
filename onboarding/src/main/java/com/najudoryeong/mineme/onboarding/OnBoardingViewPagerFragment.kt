@@ -1,11 +1,13 @@
 package com.najudoryeong.mineme.onboarding
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.common_ui.MainViewModelUtil
 import com.najudoryeong.mineme.onboarding.databinding.FragmentOnBoardingViewPagerBinding
 import com.najudoryeong.mineme.onboarding.viewpagerfragment.OnBoarding1Fragment
@@ -41,6 +43,16 @@ class OnBoardingViewPagerFragment : Fragment() {
         binding.viewPager2.let {
             it.adapter = OnBoardingViewPagerAdapter(this)
             binding.indicator.setViewPager(it)
+        }
+
+        binding.nextButton.setOnClickListener {
+            Log.d("page","${binding.viewPager2.currentItem-1}")
+            if (binding.viewPager2.currentItem == NUM_PAGES-1)
+                (activity as MainActivityUtil).run {
+                    navigate(this@OnBoardingViewPagerFragment, Login)
+                }
+            else
+                binding.viewPager2.currentItem++
         }
 
     }
