@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/to_accountTV"
-            style="@style/SettingMainTV"
+            style="@style/ImageText"
             android:text="@string/account"
             app:drawableStartCompat="@drawable/img_person"
             tools:drawableStart="@drawable/img_person" />
@@ -22,7 +22,7 @@
 
         <TextView
             android:id="@+id/to_notificationTV"
-            style="@style/SettingMainTV"
+            style="@style/ImageText"
             android:text="@string/notification"
             app:drawableStartCompat="@drawable/img_notification"
             tools:drawableStart="@drawable/img_notification" />
@@ -31,7 +31,7 @@
 
         <TextView
             android:id="@+id/to_securityTV"
-            style="@style/SettingMainTV"
+            style="@style/ImageText"
             android:text="@string/security"
             app:drawableStartCompat="@drawable/img_security"
             tools:drawableStart="@drawable/img_security" />
@@ -40,7 +40,7 @@
 
         <TextView
             android:id="@+id/to_noticeTV"
-            style="@style/SettingMainTV"
+            style="@style/ImageText"
             android:text="@string/notice"
             app:drawableStartCompat="@drawable/img_person"
             tools:drawableStart="@drawable/img_person" />
@@ -49,7 +49,7 @@
 
         <TextView
             android:id="@+id/to_inquiryTV"
-            style="@style/SettingMainTV"
+            style="@style/ImageText"
             android:text="@string/inquiry"
             app:drawableStartCompat="@drawable/img_person"
             tools:drawableStart="@drawable/img_person" />

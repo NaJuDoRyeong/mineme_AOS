@@ -8,10 +8,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 
-// fragment 공통 init 부분 설정
 abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil) : Fragment() {
     private var _binding: T? = null
     val binding get() = _binding!!
@@ -24,15 +22,21 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate(inflater, fragment.layoutID, container, false)
+        _binding = DataBindingUtil.inflate<T>(inflater, fragment.layoutID, container, false)
         //activity는 MainActivity를 가르킴
         //MainViewModelUtil 통해 MainViewModel 코드에 접근
+        //todo methode
         (activity as MainViewModelUtil).run {
             setToolbarTitle(getString(fragment.toolbarText))
         }
+
         return binding.root
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initView()

@@ -2,10 +2,21 @@ package com.najudoryeong.mineme
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.view.ViewGroup
+import android.widget.FrameLayout
+import android.widget.RelativeLayout
+import android.widget.RelativeLayout.LayoutParams
 import androidx.activity.viewModels
+import androidx.core.view.marginTop
+import androidx.core.view.setMargins
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentContainer
+import androidx.fragment.app.FragmentContainerView
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -15,6 +26,10 @@ import com.najudoryeong.mineme.common_ui.FragmentInfoUtil
 import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.common_ui.MainViewModelUtil
 import com.najudoryeong.mineme.databinding.ActivityMainBinding
+import com.najudoryeong.mineme.home.Home
+import com.najudoryeong.mineme.home.HomeFragment
+import com.najudoryeong.mineme.onboarding.LoginFragment
+import kotlin.math.log
 
 // 하위 모듈이 MainViewModel 코드에 접근할 수 있게 MainViewModelUtil 상속 구현
 class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
@@ -27,9 +42,8 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-
         binding.viewModel = model
-        model.toolbarTitle.observe(this, toolbarTitleObserver)
+
         initAppBar()
         initBottomNav()
     }
@@ -45,9 +59,8 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
             setOf(R.id.home, R.id.story, R.id.setting)
         )
 
-        // navController와 actionbar 연결
+        // navController 와 actionbar 연결
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
-
         binding.bottomNavigationView.run {
             setupWithNavController(navController)
             itemIconTintList = null
@@ -60,7 +73,6 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
             setDisplayShowTitleEnabled(false) //title제거
             setDisplayHomeAsUpEnabled(true)
         }
-
     }
 
     // layoutID로 navigate
@@ -74,13 +86,16 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
 
     /** [MainViewModelUtil] */
     override fun setToolbarTitle(newTitle: String) {
-        model.updateToolbarTitle(newTitle)
+        binding.toolbar.title = newTitle
     }
 
-    //toolbar title 옵저버
-    private val toolbarTitleObserver = Observer<String> {
-        binding.toolbar.title = it
+    override fun setVisibilityBottomAppbar(visibilityMode: Int) {
+        binding.bottomAppBar.visibility = visibilityMode
+        binding.fab.visibility = visibilityMode
     }
 
+    override fun setVisibilityTopAppBar(visibilityMode: Int) {
+        binding.topAppBar.visibility = visibilityMode
+    }
 
 }

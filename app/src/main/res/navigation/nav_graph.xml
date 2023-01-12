@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/home">
     <fragment
@@ -11,7 +10,11 @@
     <fragment
         android:id="@+id/home"
         android:name="com.najudoryeong.mineme.home.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_home_to_navigation"
+            app:destination="@id/onBoarding_navigation" />
+    </fragment>
     <fragment
         android:id="@+id/setting"
         android:name="com.najudoryeong.mineme.setting.fragment.SettingFragment"
@@ -52,4 +55,41 @@
         android:id="@+id/settingSecurityFragment"
         android:name="com.najudoryeong.mineme.setting.fragment.SettingSecurityFragment"
         android:label="SettingSecurityFragment" />
+
+    <navigation android:id="@+id/onBoarding_navigation"
+        app:startDestination="@id/onBoardingViewPagerFragment">
+        <fragment
+            android:id="@+id/inputCodeFragment"
+            android:name="com.najudoryeong.mineme.onboarding.InputCodeFragment"
+            android:label="InputCodeFragment">
+            <action
+                android:id="@+id/action_inputCodeFragment_to_home"
+                app:destination="@id/home" />
+        </fragment>
+        <fragment
+            android:id="@+id/onBoardingViewPagerFragment"
+            android:name="com.najudoryeong.mineme.onboarding.OnBoardingViewPagerFragment"
+            android:label="OnBoardingViewPagerFragment">
+            <action
+                android:id="@+id/action_onBoardingViewPagerFragment_to_loginFragment"
+                app:destination="@id/login"
+                app:popUpToInclusive="true" />
+        </fragment>
+        <fragment
+            android:id="@+id/login"
+            android:name="com.najudoryeong.mineme.onboarding.LoginFragment"
+            android:label="LoginFragment">
+            <action
+                android:id="@+id/action_login_to_inputUserInfoFragment"
+                app:destination="@id/inputUserInfoFragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/inputUserInfoFragment"
+            android:name="com.najudoryeong.mineme.onboarding.InputUserInfoFragment"
+            android:label="InputUserInfoFragment">
+            <action
+                android:id="@+id/action_inputUserInfoFragment_to_inputCodeFragment"
+                app:destination="@id/inputCodeFragment" />
+        </fragment>
+    </navigation>
 </navigation>
