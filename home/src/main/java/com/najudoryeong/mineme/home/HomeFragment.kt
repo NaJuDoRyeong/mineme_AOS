@@ -1,13 +1,22 @@
 package com.najudoryeong.mineme.home
 
+import android.os.Bundle
 import android.view.View
 import androidx.activity.OnBackPressedCallback
 import com.najudoryeong.mineme.common_ui.BaseFragment
+import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.common_ui.MainViewModelUtil
 import com.najudoryeong.mineme.home.databinding.FragmentHomeBinding
+import com.najudoryeong.mineme.onboarding.OnBoarding
 
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(Home) {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        (activity as MainActivityUtil).run {
+            navigate(this@HomeFragment,OnBoarding)
+        }
+    }
 
     override fun initView() {
 
