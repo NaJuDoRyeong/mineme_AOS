@@ -2,6 +2,7 @@ package com.najudoryeong.mineme
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
@@ -25,6 +26,10 @@ import com.najudoryeong.mineme.common_ui.FragmentInfoUtil
 import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.common_ui.MainViewModelUtil
 import com.najudoryeong.mineme.databinding.ActivityMainBinding
+import com.najudoryeong.mineme.home.Home
+import com.najudoryeong.mineme.home.HomeFragment
+import com.najudoryeong.mineme.onboarding.LoginFragment
+import kotlin.math.log
 
 // 하위 모듈이 MainViewModel 코드에 접근할 수 있게 MainViewModelUtil 상속 구현
 class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
@@ -56,7 +61,6 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
 
         // navController 와 actionbar 연결
         NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
-
         binding.bottomNavigationView.run {
             setupWithNavController(navController)
             itemIconTintList = null
@@ -69,7 +73,6 @@ class MainActivity : AppCompatActivity(), MainViewModelUtil, MainActivityUtil {
             setDisplayShowTitleEnabled(false) //title제거
             setDisplayHomeAsUpEnabled(true)
         }
-
     }
 
     // layoutID로 navigate
