@@ -2,6 +2,9 @@ package com.najudoryeong.mineme.common_ui
 
 import androidx.fragment.app.Fragment
 
-interface MainActivityUtil {
-    fun navigate(start : Fragment, dest : FragmentInfoUtil)
+interface MainActivityUtil{
+    fun setToolbarTitle(newTitle: String)
+    fun navigateToHome(start : Fragment)
+    fun setVisibilityBottomAppbar(visibilityMode : Int)
+    fun setVisibilityTopAppBar(visibilityMode: Int)
 }

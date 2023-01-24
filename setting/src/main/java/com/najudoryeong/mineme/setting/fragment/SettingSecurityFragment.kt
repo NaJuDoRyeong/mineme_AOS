@@ -9,9 +9,7 @@ class SettingSecurityFragment : BaseFragment<FragmentSettingSecurityBinding>(Set
 
     override fun initView() {
         binding.apply {
-            binding.apply {
 
-            }
         }
     }
 

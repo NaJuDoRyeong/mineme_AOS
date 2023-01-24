@@ -1,7 +1,7 @@
 package com.najudoryeong.mineme.setting.fragment
 
+import androidx.navigation.fragment.findNavController
 import com.najudoryeong.mineme.common_ui.BaseFragment
-import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.setting.*
 import com.najudoryeong.mineme.setting.databinding.FragmentSettingBinding
 
@@ -11,33 +11,24 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(Setting) {
         binding.apply {
 
             toAccountTV.setOnClickListener {
-                (activity as MainActivityUtil).run {
-                    navigate(this@SettingFragment, SettingAccount)
-                }
+                findNavController().navigate(R.id.to_settingAccountFragment)
             }
 
             toNotificationTV.setOnClickListener {
-                (activity as MainActivityUtil).run {
-                    navigate(this@SettingFragment, SettingNotification)
-                }
+                findNavController().navigate(R.id.to_settingNotificationFragment)
+
             }
 
             toSecurityTV.setOnClickListener {
-                (activity as MainActivityUtil).run {
-                    navigate(this@SettingFragment, SettingSecurity)
-                }
+                findNavController().navigate(R.id.to_settingSecurityFragment)
             }
 
             toNoticeTV.setOnClickListener {
-                (activity as MainActivityUtil).run {
-                    navigate(this@SettingFragment, SettingNotice)
-                }
+                findNavController().navigate(R.id.to_settingNoticeFragment)
             }
 
             toInquiryTV.setOnClickListener {
-                (activity as MainActivityUtil).run {
-                    navigate(this@SettingFragment, SettingInquiry)
-                }
+                findNavController().navigate(R.id.to_settingInquiryFragment)
             }
 
         }

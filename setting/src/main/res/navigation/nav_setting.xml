@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_setting"
+    app:startDestination="@id/settingFragment">
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.SettingFragment"
+        android:label="SettingFragment"
+        tools:layout="@layout/fragment_setting" >
+        <action
+            android:id="@+id/to_settingAccountFragment"
+            app:destination="@id/settingAccountFragment" />
+        <action
+            android:id="@+id/to_settingInquiryFragment"
+            app:destination="@id/settingInquiryFragment" />
+        <action
+            android:id="@+id/to_settingNoticeFragment"
+            app:destination="@id/settingNoticeFragment" />
+        <action
+            android:id="@+id/to_settingNotificationFragment"
+            app:destination="@id/settingNotificationFragment" />
+        <action
+            android:id="@+id/to_settingSecurityFragment"
+            app:destination="@id/settingSecurityFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingAccountFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.SettingAccountFragment"
+        android:label="SettingAccountFragment"
+        tools:layout="@layout/fragment_setting_account" />
+    <fragment
+        android:id="@+id/settingInquiryFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.SettingInquiryFragment"
+        android:label="SettingInquiryFragment"
+        tools:layout="@layout/fragment_setting_inquiry" />
+    <fragment
+        android:id="@+id/settingNoticeFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.SettingNoticeFragment"
+        android:label="SettingNoticeFragment"
+        tools:layout="@layout/fragment_setting_notice" />
+    <fragment
+        android:id="@+id/settingNotificationFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.SettingNotificationFragment"
+        android:label="SettingNotificationFragment"
+        tools:layout="@layout/fragment_setting_notification" />
+    <fragment
+        android:id="@+id/settingSecurityFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.SettingSecurityFragment"
+        android:label="SettingSecurityFragment"
+        tools:layout="@layout/fragment_setting_security" />
+</navigation>

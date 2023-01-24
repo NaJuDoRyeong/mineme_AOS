@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.najudoryeong.mineme.common_ui.MainActivityUtil
-import com.najudoryeong.mineme.common_ui.MainViewModelUtil
 import com.najudoryeong.mineme.onboarding.databinding.FragmentOnBoardingViewPagerBinding
 import com.najudoryeong.mineme.onboarding.viewpagerfragment.OnBoarding1Fragment
 import com.najudoryeong.mineme.onboarding.viewpagerfragment.OnBoarding2Fragment
@@ -28,12 +28,7 @@ class OnBoardingViewPagerFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentOnBoardingViewPagerBinding.inflate(inflater, container, false)
-        (activity as MainViewModelUtil).run {
-            setVisibilityBottomAppbar(View.GONE)
-        }
-        (activity as MainViewModelUtil).run {
-            setVisibilityTopAppBar(View.GONE)
-        }
+        hideAppBar()
         return binding.root
     }
 
@@ -46,17 +41,23 @@ class OnBoardingViewPagerFragment : Fragment() {
         }
 
         binding.nextButton.setOnClickListener {
-            Log.d("page","${binding.viewPager2.currentItem-1}")
-            if (binding.viewPager2.currentItem == NUM_PAGES-1)
-                (activity as MainActivityUtil).run {
-                    navigate(this@OnBoardingViewPagerFragment, Login)
-                }
+            Log.d("page", "${binding.viewPager2.currentItem - 1}")
+            if (binding.viewPager2.currentItem == NUM_PAGES - 1)
+                findNavController().navigate(R.id.next)
             else
                 binding.viewPager2.currentItem++
         }
 
     }
 
+    private fun hideAppBar() {
+        (activity as MainActivityUtil).run {
+            setVisibilityBottomAppbar(View.GONE)
+        }
+        (activity as MainActivityUtil).run {
+            setVisibilityTopAppBar(View.GONE)
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

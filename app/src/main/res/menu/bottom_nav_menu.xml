@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/home"
+        android:id="@+id/nav_home"
         android:icon="@drawable/bottom_home_on_off"
         android:title="" />
 
     <item
-        android:id="@+id/story"
+        android:id="@+id/nav_story"
         android:icon="@drawable/bottom_story_on_off"
         android:title="" />
 
@@ -22,7 +22,7 @@
         android:title="" />
 
     <item
-        android:id="@+id/setting"
+        android:id="@+id/nav_setting"
         android:icon="@drawable/bottom_setting_on_off"
         android:title="" />
 

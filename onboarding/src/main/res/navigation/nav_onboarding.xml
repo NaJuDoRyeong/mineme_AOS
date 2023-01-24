@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_onboarding"
+    app:startDestination="@id/onBoardingViewPagerFragment">
+
+    <fragment
+        android:id="@+id/onBoardingViewPagerFragment"
+        android:name="com.najudoryeong.mineme.onboarding.OnBoardingViewPagerFragment"
+        android:label="OnBoardingViewPagerFragment"
+        tools:layout="@layout/fragment_on_boarding_view_pager" >
+        <action
+            android:id="@+id/next"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.najudoryeong.mineme.onboarding.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/next"
+            app:destination="@id/inputUserInfoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inputUserInfoFragment"
+        android:name="com.najudoryeong.mineme.onboarding.InputUserInfoFragment"
+        android:label="InputUserInfoFragment"
+        tools:layout="@layout/fragment_input_user_info" >
+        <action
+            android:id="@+id/next"
+            app:destination="@id/inputCodeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/inputCodeFragment"
+        android:name="com.najudoryeong.mineme.onboarding.InputCodeFragment"
+        android:label="InputCodeFragment"
+        tools:layout="@layout/fragment_input_code" />
+</navigation>

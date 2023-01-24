@@ -22,11 +22,11 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate<T>(inflater, fragment.layoutID, container, false)
+        _binding = DataBindingUtil.inflate(inflater, fragment.layoutID, container, false)
         //activity는 MainActivity를 가르킴
         //MainViewModelUtil 통해 MainViewModel 코드에 접근
         //todo methode
-        (activity as MainViewModelUtil).run {
+        (activity as MainActivityUtil).run {
             setToolbarTitle(getString(fragment.toolbarText))
         }
 
