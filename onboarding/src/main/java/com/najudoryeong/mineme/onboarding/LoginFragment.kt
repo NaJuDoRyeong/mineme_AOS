@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
+import androidx.navigation.fragment.findNavController
 import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.onboarding.R
 import com.najudoryeong.mineme.onboarding.databinding.FragmentLoginBinding
@@ -43,9 +44,7 @@ class LoginFragment : Fragment() {
         )
 
         binding.kakaoLoginBtn.setOnClickListener {
-            (activity as MainActivityUtil).run {
-                navigate(this@LoginFragment, InputUserInfo)
-            }
+            findNavController().navigate(R.id.next)
         }
 
     }
