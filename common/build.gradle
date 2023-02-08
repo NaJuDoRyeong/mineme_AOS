@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'com.najudoryeong.mineme.setting'
+    namespace 'com.example.common'
     compileSdk 33
 
     defaultConfig {
@@ -30,14 +30,17 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        dataBinding true
-    }
 }
 
 dependencies {
 
-    api project(path: ':common-ui')
+    api project(path: ':foundation')
+
+    // Preferences DataStore
+    implementation("androidx.datastore:datastore-preferences:$rootProject.dataStorePreferences_version")
+
+
+    api "com.kakao.sdk:v2-all:$rootProject.kakao_version"
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"

@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace 'com.najudoryeong.mineme.setting'
+    namespace 'com.example.foundation'
     compileSdk 33
 
     defaultConfig {
@@ -30,14 +30,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    buildFeatures {
-        dataBinding true
-    }
 }
 
 dependencies {
 
-    api project(path: ':common-ui')
+    // Retrofit2
+    api "com.squareup.okhttp3:okhttp:$rootProject.okHttpVersion"
+    api "com.squareup.okhttp3:logging-interceptor:$rootProject.okHttpVersion"
+    api "com.squareup.retrofit2:retrofit:$rootProject.retrofit2Version"
+    api "com.squareup.retrofit2:converter-gson:$rootProject.retrofit2Version"
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"
