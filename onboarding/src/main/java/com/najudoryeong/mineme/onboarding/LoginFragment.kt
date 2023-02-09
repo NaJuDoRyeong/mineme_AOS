@@ -44,7 +44,7 @@ class LoginFragment : Fragment() {
         )
 
         binding.kakaoLoginBtn.setOnClickListener {
-            findNavController().navigate(R.id.next)
+            (requireActivity() as SplashActivity).checkJWT()
         }
 
     }

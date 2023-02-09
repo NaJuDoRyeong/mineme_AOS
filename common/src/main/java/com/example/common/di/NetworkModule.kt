@@ -1,6 +1,7 @@
 package com.example.common.di
 
 import com.example.common.data.source.AuthService
+import com.example.common.data.source.UserService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,5 +20,10 @@ class NetworkModule {
         return retrofit.create(AuthService::class.java)
     }
 
+    @Singleton
+    @Provides
+    fun provideUserService(retrofit: Retrofit): UserService {
+        return retrofit.create(UserService::class.java)
+    }
 
 }

@@ -39,7 +39,7 @@ android {
 
 dependencies {
 
-    api project(path: ':common-ui')
+
     api project(path: ':story')
     api project(path: ':home')
     api project(path: ':setting')

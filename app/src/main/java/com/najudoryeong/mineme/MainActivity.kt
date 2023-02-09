@@ -33,26 +33,6 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
         initAppBar()
         initBottomNav()
 
-        setStartDestination(isLogin())
-
-    }
-
-
-    /**
-     * login 여부에 따른 startDestination 조작을 위해
-     * main graph를 가져와서 startDestination을 조작 후 변경내용을 적용한다.
-     * */
-
-    private fun setStartDestination(isLogin: Boolean) {
-        val navGraph = navController.navInflater.inflate(R.navigation.nav_main)
-        if (isLogin) navGraph.setStartDestination(R.id.nav_home)
-        else navGraph.setStartDestination(com.najudoryeong.mineme.onboarding.R.id.nav_onboarding)
-        navController.setGraph(navGraph, null)
-    }
-
-    // todo 로그인 체크 로직
-    private fun isLogin(): Boolean {
-        return true
     }
 
     private fun initBottomNav() {

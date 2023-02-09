@@ -14,7 +14,7 @@ android {
     defaultConfig {
         minSdk 23
         targetSdk 33
-
+        manifestPlaceholders["NATIVE_APP_KEY"] = "5162225c94277a85e12566f227145303"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
     }
@@ -40,6 +40,7 @@ android {
 dependencies {
 
     api project(path: ':common-ui')
+    api project(path: ':common')
 
     // Hilt
     implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"
