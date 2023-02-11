@@ -6,7 +6,7 @@
 
     <data>
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
 
         <variable
             name="vm"
@@ -28,11 +28,11 @@
 
             <ImageView
                 android:id="@+id/home_profileIV1"
+                photoUrl="@{vm.homeData.couple.me.profileImage}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="48dp"
-                photoUrl="@{vm.homeData.couple.me.profileImage}"
                 app:layout_constraintEnd_toStartOf="@+id/home_heartIV"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -40,10 +40,10 @@
 
             <ImageView
                 android:id="@+id/home_profileIV2"
+                photoUrl="@{vm.homeData.couple.mine.profileImage}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="25dp"
-                photoUrl="@{vm.homeData.couple.mine.profileImage}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/home_heartIV"
@@ -111,6 +111,33 @@
                 app:layout_constraintTop_toBottomOf="@id/home_profileNameTV2" />
 
 
+            <TextView
+                android:id="@+id/insta_Id1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/cafe24_ssurround_air"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="@{vm.homeData.couple.me.instaId}"
+                app:layout_constraintEnd_toEndOf="@id/home_profileExplanation1"
+                app:layout_constraintStart_toStartOf="@id/home_profileExplanation1"
+                app:layout_constraintTop_toBottomOf="@id/home_profileExplanation1" />
+
+            <TextView
+                android:id="@+id/insta_Id2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/cafe24_ssurround_air"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="@{vm.homeData.couple.mine.instaId}"
+                app:layout_constraintEnd_toEndOf="@id/home_profileExplanation2"
+                app:layout_constraintStart_toStartOf="@id/home_profileExplanation2"
+                app:layout_constraintTop_toBottomOf="@id/home_profileExplanation2" />
+
+
             <ImageView
                 android:id="@+id/home_topLineIV"
                 android:layout_width="310dp"
@@ -134,11 +161,11 @@
                 app:layout_constraintTop_toBottomOf="@id/home_topLineIV" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/home_todayStoryLO"
+                android:id="@+id/home_noStoryLayout"
                 android:layout_width="348dp"
                 android:layout_height="348dp"
                 android:layout_marginTop="24dp"
-                android:visibility="@{vm.isNewStory ? View.VISIBLE : View.INVISIBLE}"
+                android:visibility="@{vm.isNewStory ? View.INVISIBLE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/home_storyTV">
@@ -159,10 +186,25 @@
                     app:layout_constraintStart_toStartOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
-            
+
+
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width=""
-                android:layout_height=""
+                android:id="@+id/home_newStroyLayout"
+                android:layout_width="348dp"
+                android:layout_height="348dp"
+                android:layout_marginTop="24dp"
+                android:visibility="@{vm.isNewStory ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_storyTV">
+
+                <include
+                    layout="@layout/item_story"
+                    app:date="@{vm.homeData.newStory.date}"
+                    app:region="@{vm.homeData.newStory.region}"
+                    app:imgUrl="@{vm.homeData.newStory.thumbnailImage}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             <TextView
@@ -173,9 +215,10 @@
                 android:fontFamily="@font/cafe24_ssurround_air"
                 android:text="오늘의 스토리를 작성해주세요:)"
                 android:textSize="20sp"
+                android:visibility="@{vm.isNewStory ? View.INVISIBLE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/home_todayStoryLO" />
+                app:layout_constraintTop_toBottomOf="@id/home_noStoryLayout" />
 
             <ImageView
                 android:id="@+id/home_bottomLineIV"

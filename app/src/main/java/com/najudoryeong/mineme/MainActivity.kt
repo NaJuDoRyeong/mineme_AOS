@@ -3,6 +3,7 @@ package com.najudoryeong.mineme
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -31,6 +32,7 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewModel = model
+
 
         initAppBar()
         initBottomNav()
