@@ -3,6 +3,7 @@ package com.najudoryeong.mineme.onboarding
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
@@ -29,7 +30,7 @@ class LoginUtil {
             // 카카오톡으로 로그인 할 수 없어 카카오계정으로 로그인할 경우 사용됨
             val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
                 if (error != null) {
-                    // 카카오 계정으로 로그인 실패
+                    Log.d("errorLogin",error.toString())
                 } else {
                     onLoginSuccess(token?.accessToken)
                     // 카카오 계정으로 로그인 성공
@@ -37,6 +38,7 @@ class LoginUtil {
             }
 
             // 카카오톡이 설치되어 있으면 카카오톡 로그인, 아니면 카카오계정으로 로그인
+            Log.d("errorLogin",UserApiClient.instance.isKakaoTalkLoginAvailable(context).toString())
             if (UserApiClient.instance.isKakaoTalkLoginAvailable(context)) {
                 UserApiClient.instance.loginWithKakaoTalk(context) { token, error ->
                     if (error != null) {
@@ -61,6 +63,7 @@ class LoginUtil {
             } else {
                 //카카오톡 설치 x  => 카카오 계정으로 로그인
                 UserApiClient.instance.loginWithKakaoAccount(context, callback = callback)
+
             }
 
 
