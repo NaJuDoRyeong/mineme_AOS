@@ -14,9 +14,11 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
 // 하위 모듈이 MainViewModel 코드에 접근할 수 있게 MainViewModelUtil 상속 구현
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainActivityUtil {
 
     private lateinit var binding: ActivityMainBinding
@@ -69,15 +71,14 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
         binding.topAppBar.visibility = View.VISIBLE
     }
 
+
+
+
     /** [MainActivityUtil] */
     override fun setToolbarTitle(newTitle: String) {
         binding.toolbar.title = newTitle
     }
 
-    override fun navigateToHome(start: Fragment) {
-        start.findNavController().navigate(R.id.nav_home)
-        showAppBar()
-    }
 
     override fun setVisibilityBottomAppbar(visibilityMode: Int) {
         binding.bottomAppBar.visibility = visibilityMode

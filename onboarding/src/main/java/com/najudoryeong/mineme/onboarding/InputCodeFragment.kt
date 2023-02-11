@@ -39,9 +39,7 @@ class InputCodeFragment : Fragment() {
                 viewModel.inputCode(
                     JWT!!,CodeRequest(binding.code.text.toString())
                 ){
-                    (activity as MainActivityUtil).run {
-                        navigateToHome(this@InputCodeFragment)
-                    }
+                    (requireActivity() as SplashActivity).startHomeActivity()
                 }
             }
         }

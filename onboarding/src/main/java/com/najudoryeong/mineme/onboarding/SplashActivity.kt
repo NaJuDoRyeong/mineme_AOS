@@ -22,9 +22,7 @@ class SplashActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySplashBinding
     private val viewModel: SplashViewModel by viewModels()
 
-    @Inject
-    lateinit var mainActivityClass: Class<*>
-
+    @Inject lateinit var mainActivityClass: Class<*>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkJWT()
@@ -37,7 +35,7 @@ class SplashActivity : AppCompatActivity() {
         Log.d("test", "checkJWT")
         viewModel.getJsonWebToken { JWT ->
             if (JWT != null) {
-                LoginUtil.startMainActivity(this, mainActivityClass)
+                startHomeActivity()
             } else {
                 isFirst { permissionNum ->
                     // 처음이아님 => 카카오 로그인만 다시
@@ -55,6 +53,10 @@ class SplashActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun startHomeActivity(){
+        LoginUtil.startMainActivity(this,mainActivityClass)
     }
 
     private fun initNav() {

@@ -69,7 +69,9 @@ class SplashViewModel @Inject constructor(
     fun inputUserInfo(token: String, userInfoRequest: UserInfoRequest, callback: () -> Unit) {
         viewModelScope.launch {
             userService.postUserInfo(token, userInfoRequest).let {
-                if (it.success) callback.invoke()
+                if (it.success) {
+                    callback.invoke()
+                }
             }
         }
     }

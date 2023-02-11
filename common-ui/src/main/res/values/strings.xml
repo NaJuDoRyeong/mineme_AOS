@@ -3,4 +3,6 @@
     <string name="app_name">mineme</string>
     <string name="next">다음</string>
     <string name="confirm">확인</string>
+    <string name="newStory">New Story</string>
+    <string name="noStory">No Story</string>
 </resources>
