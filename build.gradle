@@ -17,7 +17,7 @@ buildscript {
         kakao_version = '2.12.1'
         dataStorePreferences_version = '1.0.0'
         retrofit2Version = '2.9.0'
-
+        recyclerViewVersion = '1.2.1'
     }
 
     dependencies {

@@ -38,6 +38,10 @@ android {
 
 dependencies {
 
+    api project(path: ':common')
+
+
+    api "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
 
     // Fragment
     api "androidx.fragment:fragment:$rootProject.fragment_version"
