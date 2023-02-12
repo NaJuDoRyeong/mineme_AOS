@@ -3,6 +3,7 @@ package com.najudoryeong.mineme
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -14,9 +15,11 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
 // 하위 모듈이 MainViewModel 코드에 접근할 수 있게 MainViewModelUtil 상속 구현
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainActivityUtil {
 
     private lateinit var binding: ActivityMainBinding
@@ -30,29 +33,10 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewModel = model
 
+
         initAppBar()
         initBottomNav()
 
-        setStartDestination(isLogin())
-
-    }
-
-
-    /**
-     * login 여부에 따른 startDestination 조작을 위해
-     * main graph를 가져와서 startDestination을 조작 후 변경내용을 적용한다.
-     * */
-
-    private fun setStartDestination(isLogin: Boolean) {
-        val navGraph = navController.navInflater.inflate(R.navigation.nav_main)
-        if (isLogin) navGraph.setStartDestination(R.id.nav_home)
-        else navGraph.setStartDestination(com.najudoryeong.mineme.onboarding.R.id.nav_onboarding)
-        navController.setGraph(navGraph, null)
-    }
-
-    // todo 로그인 체크 로직
-    private fun isLogin(): Boolean {
-        return true
     }
 
     private fun initBottomNav() {
@@ -89,15 +73,14 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
         binding.topAppBar.visibility = View.VISIBLE
     }
 
+
+
+
     /** [MainActivityUtil] */
     override fun setToolbarTitle(newTitle: String) {
         binding.toolbar.title = newTitle
     }
 
-    override fun navigateToHome(start: Fragment) {
-        start.findNavController().navigate(R.id.nav_home)
-        showAppBar()
-    }
 
     override fun setVisibilityBottomAppbar(visibilityMode: Int) {
         binding.bottomAppBar.visibility = visibilityMode

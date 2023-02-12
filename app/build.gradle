@@ -16,7 +16,6 @@ android {
         targetSdk 33
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -40,7 +39,7 @@ android {
 
 dependencies {
 
-    api project(path: ':common-ui')
+
     api project(path: ':story')
     api project(path: ':home')
     api project(path: ':setting')
@@ -50,8 +49,7 @@ dependencies {
     // Hilt
     implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
-    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
-    androidTestImplementation "com.google.dagger:hilt-android-testing:$rootProject.hiltVersion"
+
 
     implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'androidx.appcompat:appcompat:1.6.0'
@@ -60,4 +58,8 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+kapt {
+    correctErrorTypes true
 }

@@ -13,8 +13,10 @@ import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.onboarding.R
 import com.najudoryeong.mineme.onboarding.databinding.FragmentLoginBinding
 import com.najudoryeong.mineme.onboarding.databinding.FragmentOnBoardingViewPagerBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class LoginFragment : Fragment() {
 
     private var _binding: FragmentLoginBinding? = null
@@ -44,7 +46,7 @@ class LoginFragment : Fragment() {
         )
 
         binding.kakaoLoginBtn.setOnClickListener {
-            findNavController().navigate(R.id.next)
+            (requireActivity() as SplashActivity).checkJWT()
         }
 
     }

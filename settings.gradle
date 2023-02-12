@@ -10,6 +10,7 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven { url 'https://devrepo.kakao.com/nexus/content/groups/public/' }
     }
 }
 rootProject.name = "Mineme"
@@ -19,3 +20,5 @@ include ':common-ui'
 include ':home'
 include ':setting'
 include ':onboarding'
+include ':common'
+include ':foundation'

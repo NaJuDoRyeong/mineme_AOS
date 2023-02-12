@@ -3,21 +3,36 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".SplashActivity"
-        android:background="#009900">
+        tools:context=".SplashActivity">
 
+        <FrameLayout
+            android:background="@color/butter"
+            android:id="@+id/splash_screen"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <TextView
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="스플래쉬 화면"
+                android:textSize="50sp" />
+
+        </FrameLayout>
+
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/fragment_containerView"
+            android:name="androidx.navigation.fragment.NavHostFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="스플래시 화면"
-            android:textSize="50dp"
-            android:gravity="center"
-            />
+            android:visibility="gone"
+            app:defaultNavHost="true"
+            app:navGraph="@navigation/nav_onboarding" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
 
 </layout>

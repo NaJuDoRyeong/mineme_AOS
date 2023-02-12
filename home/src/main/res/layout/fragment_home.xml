@@ -4,6 +4,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.najudoryeong.mineme.home.HomeViewModel" />
+
+    </data>
+
 
     <ScrollView
         android:layout_width="match_parent"
@@ -18,11 +28,11 @@
 
             <ImageView
                 android:id="@+id/home_profileIV1"
+                photoUrl="@{vm.homeData.couple.me.profileImage}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="48dp"
-                android:src="@drawable/img_profile"
                 app:layout_constraintEnd_toStartOf="@+id/home_heartIV"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
@@ -30,10 +40,10 @@
 
             <ImageView
                 android:id="@+id/home_profileIV2"
+                photoUrl="@{vm.homeData.couple.mine.profileImage}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="25dp"
-                android:src="@drawable/img_profile"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toEndOf="@+id/home_heartIV"
@@ -56,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="18dp"
                 android:fontFamily="@font/cafe24_ssurround_air"
-                android:text="가나다"
+                android:text="@{vm.homeData.couple.me.nickname}"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@+id/home_profileIV1"
                 app:layout_constraintStart_toStartOf="@+id/home_profileIV1"
@@ -67,7 +77,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/cafe24_ssurround_air"
-                android:text="가나다"
+                android:text="@{vm.homeData.couple.mine.nickname}"
                 android:textSize="18sp"
                 app:layout_constraintEnd_toEndOf="@+id/home_profileIV2"
                 app:layout_constraintStart_toStartOf="@+id/home_profileIV2"
@@ -80,7 +90,7 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/cafe24_ssurround_air"
                 android:gravity="center"
-                android:text="상대방의 설명을\n 입력해주세요!"
+                android:text="@{vm.homeData.couple.me.description}"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@id/home_profileNameTV1"
                 app:layout_constraintStart_toStartOf="@id/home_profileNameTV1"
@@ -94,11 +104,38 @@
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/cafe24_ssurround_air"
                 android:gravity="center"
-                android:text="상대방의 설명을\n 입력해주세요!"
+                android:text="@{vm.homeData.couple.mine.description}"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@id/home_profileNameTV2"
                 app:layout_constraintStart_toStartOf="@id/home_profileNameTV2"
                 app:layout_constraintTop_toBottomOf="@id/home_profileNameTV2" />
+
+
+            <TextView
+                android:id="@+id/insta_Id1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/cafe24_ssurround_air"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="@{vm.homeData.couple.me.instaId}"
+                app:layout_constraintEnd_toEndOf="@id/home_profileExplanation1"
+                app:layout_constraintStart_toStartOf="@id/home_profileExplanation1"
+                app:layout_constraintTop_toBottomOf="@id/home_profileExplanation1" />
+
+            <TextView
+                android:id="@+id/insta_Id2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/cafe24_ssurround_air"
+                android:gravity="center"
+                android:textSize="12sp"
+                android:text="@{vm.homeData.couple.mine.instaId}"
+                app:layout_constraintEnd_toEndOf="@id/home_profileExplanation2"
+                app:layout_constraintStart_toStartOf="@id/home_profileExplanation2"
+                app:layout_constraintTop_toBottomOf="@id/home_profileExplanation2" />
 
 
             <ImageView
@@ -117,17 +154,18 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:fontFamily="@font/cafe24_ssurround_air"
-                android:text="No Story..."
+                android:text="@{vm.isNewStory ? @string/newStory : @string/noStory}"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/home_topLineIV" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/home_todayStoryLO"
+                android:id="@+id/home_noStoryLayout"
                 android:layout_width="348dp"
                 android:layout_height="348dp"
                 android:layout_marginTop="24dp"
+                android:visibility="@{vm.isNewStory ? View.INVISIBLE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/home_storyTV">
@@ -150,6 +188,25 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/home_newStroyLayout"
+                android:layout_width="348dp"
+                android:layout_height="348dp"
+                android:layout_marginTop="24dp"
+                android:visibility="@{vm.isNewStory ? View.VISIBLE : View.INVISIBLE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/home_storyTV">
+
+                <include
+                    layout="@layout/item_story"
+                    app:date="@{vm.homeData.newStory.date}"
+                    app:region="@{vm.homeData.newStory.region}"
+                    app:imgUrl="@{vm.homeData.newStory.thumbnailImage}" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
             <TextView
                 android:id="@+id/home_storyTV2"
                 android:layout_width="wrap_content"
@@ -158,9 +215,10 @@
                 android:fontFamily="@font/cafe24_ssurround_air"
                 android:text="오늘의 스토리를 작성해주세요:)"
                 android:textSize="20sp"
+                android:visibility="@{vm.isNewStory ? View.INVISIBLE : View.VISIBLE}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/home_todayStoryLO" />
+                app:layout_constraintTop_toBottomOf="@id/home_noStoryLayout" />
 
             <ImageView
                 android:id="@+id/home_bottomLineIV"
