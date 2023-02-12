@@ -1,10 +1,15 @@
 package com.najudoryeong.mineme.story
 
+import androidx.fragment.app.viewModels
 import com.najudoryeong.mineme.common_ui.BaseFragment
 import com.najudoryeong.mineme.story.databinding.FragmentStoryBinding
 import com.example.common.data.entity.Story
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class StoryFragment : BaseFragment<FragmentStoryBinding>(Story) {
+
+    private val viewModel: StoryViewModel by viewModels()
 
     private val myListAdapter: StoryAdapter by lazy {
         StoryAdapter()
@@ -22,9 +27,11 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(Story) {
     override fun initView() {
         binding.apply {
             //todo callback
-            recyclerView.adapter = myListAdapter
+            this.lifecycleOwner = viewLifecycleOwner
+            this.adapter = myListAdapter
+            this.viewModel = viewModel
         }
-        myListAdapter.submitList(dataSet)
-
+        viewModel.raedStory()
     }
+
 }

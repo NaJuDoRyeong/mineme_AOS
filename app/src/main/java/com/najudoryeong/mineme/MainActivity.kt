@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
         // appbar 구성 요소 설정
         // 바텀네비게이션과 연결하면 해당 프래그먼트에 네비게이션으로는 backButton x
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_home, R.id.nav_setting, R.id.nav_setting)
+            setOf(R.id.nav_home, R.id.nav_story, R.id.nav_setting)
         )
 
         // navController 와 actionbar 연결

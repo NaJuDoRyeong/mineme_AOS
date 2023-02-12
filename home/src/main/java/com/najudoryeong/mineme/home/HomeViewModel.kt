@@ -34,9 +34,9 @@ class HomeViewModel @Inject constructor(
 
     fun settingHomeData() {
         viewModelScope.launch {
-            var a = dataStoreUseCase.bearerJsonWebToken.first()
-            if (a == null) a = "bearer test"
-            userService.getHomeInfo(a).let {
+            var jwt = dataStoreUseCase.bearerJsonWebToken.first()
+            if (jwt == null) jwt = "bearer test"
+            userService.getHomeInfo(jwt).let {
                 if (it.success){
                     Log.d("TESTAPI","API넣음")
                     if (it.data.newStory.postId == -1){

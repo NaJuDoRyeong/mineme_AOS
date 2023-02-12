@@ -3,19 +3,41 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.najudoryeong.mineme.story.StoryViewModel"/>
+        <variable
+            name="adapter"
+            type="com.najudoryeong.mineme.story.StoryAdapter"/>
+
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:padding="4dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="4dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_nostory"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
 
         <androidx.core.widget.NestedScrollView
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
-
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
@@ -25,10 +47,10 @@
                     android:clipToPadding="false"
                     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                     app:spanCount="2"
+                    adapter="@{adapter}"
+                    submitList="@{viewModel.storyList}"
                     tools:listitem="@layout/test_story" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
 
         </androidx.core.widget.NestedScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
