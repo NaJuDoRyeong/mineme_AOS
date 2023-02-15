@@ -24,7 +24,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class OnBoardingViewPagerFragment : Fragment() {
 
-    companion object{
+    companion object {
         var viewpagerNum = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) 3 else 2
     }
 
@@ -36,7 +36,14 @@ class OnBoardingViewPagerFragment : Fragment() {
 
 
     //todo companion?
-    private val messageArray = arrayOf("gps 권한", "알림 권한", "카메라 권한")
+    private val messageArray = arrayOf(
+        "기록을 위해서 갤러리 및\n" +
+                " 위치 접근 동의가 필요해요.   ",
+        "사진을 찍기 위해서\n" +
+                "카메라 접근 동의가 필요해요",
+        "알림을 하기 위해서\n" +
+                "푸시 동의가 필요해요."
+    )
     private val imageArray = arrayOf(R.drawable.img_gps, R.drawable.img_gps, R.drawable.img_gps)
     private val permissionArray = arrayOf(
         arrayOf(

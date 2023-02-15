@@ -14,6 +14,7 @@
             android:id="@+id/app_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Mineme"
             android:textColor="@color/black"
             android:textSize="24sp"
@@ -21,11 +22,13 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <TextView
             android:id="@+id/app_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/img_onboarding2"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:text="아이콘"
             app:layout_constraintBottom_toTopOf="@id/kakao_login_btn"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -39,8 +42,8 @@
             android:layout_marginHorizontal="21dp"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="43dp"
-            app:backgroundTint="@color/kakao"
             android:text="카카오 계정으로 시작"
+            app:backgroundTint="@color/kakao"
             app:layout_constraintBottom_toBottomOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

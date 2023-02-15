@@ -2,17 +2,13 @@ package com.najudoryeong.mineme.story.ui
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.najudoryeong.mineme.common.domain.entity.Story
 import com.najudoryeong.mineme.story.domain.entity.StoryListWithDate
 import com.najudoryeong.mineme.common.domain.usecase.DataStoreUseCase
 import com.najudoryeong.mineme.story.domain.usecase.StoryUseCase
-
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 var dummy = mutableListOf(
