@@ -11,3 +11,4 @@ fun bindRecyclerView(view: RecyclerView, adapter: RecyclerView.Adapter<*>, submi
         (this as ListAdapter<Any, *>).submitList(submitList?.toMutableList())
     }
 }
+

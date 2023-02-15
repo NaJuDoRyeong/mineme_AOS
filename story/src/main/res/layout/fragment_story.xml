@@ -8,10 +8,15 @@
 
         <variable
             name="viewModel"
-            type="com.najudoryeong.mineme.story.StoryViewModel"/>
+            type="com.najudoryeong.mineme.story.ui.StoryViewModel" />
+
+        <variable
+            name="list"
+            type="java.util.List&lt;com.najudoryeong.mineme.story.domain.entity.StoryListWithDate&gt;" />
+
         <variable
             name="adapter"
-            type="com.najudoryeong.mineme.story.StoryAdapter"/>
+            type="com.najudoryeong.mineme.story.StoryOutAdapter" />
 
     </data>
 
@@ -24,6 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/img_nostory"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +37,6 @@
 
 
         <androidx.core.widget.NestedScrollView
-            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -41,15 +46,18 @@
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
+                    adapter="@{adapter}"
+                    submitList="@{list}"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:clipToPadding="false"
-                    app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-                    app:spanCount="2"
-                    adapter="@{adapter}"
-                    submitList="@{viewModel.storyList}"
-                    tools:listitem="@layout/test_story" />
+                    android:orientation="vertical"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:listitem="@layout/item_story_out"
+                    />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.core.widget.NestedScrollView>

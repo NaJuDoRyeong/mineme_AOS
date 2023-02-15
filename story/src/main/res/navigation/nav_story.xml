@@ -6,6 +6,6 @@
 
     <fragment
         android:id="@+id/storyFragment"
-        android:name="com.najudoryeong.mineme.story.StoryFragment"
+        android:name="com.najudoryeong.mineme.story.ui.StoryFragment"
         android:label="StoryFragment" />
 </navigation>
