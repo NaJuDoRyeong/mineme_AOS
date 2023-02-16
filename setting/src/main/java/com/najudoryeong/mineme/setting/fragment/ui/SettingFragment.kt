@@ -1,4 +1,4 @@
-package com.najudoryeong.mineme.setting.fragment
+package com.najudoryeong.mineme.setting.fragment.ui
 
 import androidx.navigation.fragment.findNavController
 import com.najudoryeong.mineme.common_ui.BaseFragment

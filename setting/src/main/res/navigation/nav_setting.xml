@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/settingFragment"
-        android:name="com.najudoryeong.mineme.setting.fragment.SettingFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.ui.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting" >
         <action
@@ -28,27 +28,27 @@
     </fragment>
     <fragment
         android:id="@+id/settingAccountFragment"
-        android:name="com.najudoryeong.mineme.setting.fragment.SettingAccountFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.ui.SettingAccountFragment"
         android:label="SettingAccountFragment"
         tools:layout="@layout/fragment_setting_account" />
     <fragment
         android:id="@+id/settingInquiryFragment"
-        android:name="com.najudoryeong.mineme.setting.fragment.SettingInquiryFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.ui.SettingInquiryFragment"
         android:label="SettingInquiryFragment"
         tools:layout="@layout/fragment_setting_inquiry" />
     <fragment
         android:id="@+id/settingNoticeFragment"
-        android:name="com.najudoryeong.mineme.setting.fragment.SettingNoticeFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.ui.SettingNoticeFragment"
         android:label="SettingNoticeFragment"
         tools:layout="@layout/fragment_setting_notice" />
     <fragment
         android:id="@+id/settingNotificationFragment"
-        android:name="com.najudoryeong.mineme.setting.fragment.SettingNotificationFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.ui.SettingNotificationFragment"
         android:label="SettingNotificationFragment"
         tools:layout="@layout/fragment_setting_notification" />
     <fragment
         android:id="@+id/settingSecurityFragment"
-        android:name="com.najudoryeong.mineme.setting.fragment.SettingSecurityFragment"
+        android:name="com.najudoryeong.mineme.setting.fragment.ui.SettingSecurityFragment"
         android:label="SettingSecurityFragment"
         tools:layout="@layout/fragment_setting_security" />
 </navigation>

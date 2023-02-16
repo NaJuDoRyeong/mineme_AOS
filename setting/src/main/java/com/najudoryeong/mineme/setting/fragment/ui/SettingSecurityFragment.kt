@@ -1,4 +1,4 @@
-package com.najudoryeong.mineme.setting.fragment
+package com.najudoryeong.mineme.setting.fragment.ui
 
 import com.najudoryeong.mineme.common_ui.BaseFragment
 import com.najudoryeong.mineme.setting.SettingSecurity

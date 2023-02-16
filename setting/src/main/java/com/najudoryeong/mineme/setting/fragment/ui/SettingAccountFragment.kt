@@ -1,4 +1,4 @@
-package com.najudoryeong.mineme.setting.fragment
+package com.najudoryeong.mineme.setting.fragment.ui
 
 
 import android.content.ClipData

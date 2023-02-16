@@ -7,8 +7,6 @@ import javax.inject.Inject
 class StoryUseCase @Inject constructor(
     private val storyService : StoryService
 ){
-    suspend fun readStoryList(token: String): List<StoryListWithDate>? {
-        val storyList = storyService.readStoryList(token)
-        return if (storyList.success) storyList.data else null
-    }
+    suspend fun readStoryList(token: String): List<StoryListWithDate>?  = storyService.readStoryList(token).data
+
 }

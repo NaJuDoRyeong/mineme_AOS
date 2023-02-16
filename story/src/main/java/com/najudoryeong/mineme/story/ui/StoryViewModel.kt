@@ -1,7 +1,7 @@
 package com.najudoryeong.mineme.story.ui
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.najudoryeong.mineme.common.domain.entity.Story
 import com.najudoryeong.mineme.story.domain.entity.StoryListWithDate
 import com.najudoryeong.mineme.common.domain.usecase.DataStoreUseCase
@@ -9,9 +9,11 @@ import com.najudoryeong.mineme.story.domain.usecase.StoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-var dummy = mutableListOf(
+var dummy: MutableList<StoryListWithDate> = mutableListOf(
     StoryListWithDate(
         "2020", "03", listOf(
             Story(
@@ -80,21 +82,34 @@ class StoryViewModel @Inject constructor(
     private val _storyList = MutableStateFlow<MutableList<StoryListWithDate>>(mutableListOf())
     val storyList: StateFlow<MutableList<StoryListWithDate>> = _storyList
 
-
-    //todo isuploading
-    fun raedStory() {
-        Log.d("testStory", "데이터 넣음")
-        _storyList.value = dummy
+    private val _isApiLoading = MutableStateFlow(true)
+    val isApiLoading: StateFlow<Boolean> = _isApiLoading
 
 
-//        viewModelScope.launch {
-//            storyUseCase.readStoryList(dataStoreUseCase.bearerJsonWebToken.first()!!).let {
-//                if (it != null) {
-//                    _storyList.value = it
-//                } else {
-//
-//                }
-//            }
-//        }
+    private val _toastMessage = MutableStateFlow("")
+    val toastMessage: StateFlow<String> = _toastMessage
+
+    fun raedStory(endApiCallBack: () -> Unit = {}) {
+        viewModelScope.launch {
+            _isApiLoading.value = true
+
+            //_storyList.value = dummy
+
+            try {
+                storyUseCase.readStoryList(dataStoreUseCase.bearerJsonWebToken.first()!!).let {
+                    if (it != null) {
+                        _storyList.value = it.toMutableList()
+                    } else {
+
+                    }
+                }
+            } catch (e: Exception) {
+                _toastMessage.value = "스토리리스트 가져오는 거 실패"
+            }
+            endApiCallBack.invoke()
+            _isApiLoading.value = false
+        }
+
     }
+
 }
