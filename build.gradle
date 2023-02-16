@@ -19,6 +19,8 @@ buildscript {
         retrofit2Version = '2.9.0'
         recyclerViewVersion = '1.2.1'
         swipeRefreshLayoutVersion = '1.1.0'
+        materialVersion='1.8.0'
+        appCompatVersion='1.6.1'
 
     }
 

@@ -92,18 +92,14 @@ class StoryViewModel @Inject constructor(
     fun raedStory(endApiCallBack: () -> Unit = {}) {
         viewModelScope.launch {
             _isApiLoading.value = true
-
             //_storyList.value = dummy
-
             try {
                 storyUseCase.readStoryList(dataStoreUseCase.bearerJsonWebToken.first()!!).let {
-                    if (it != null) {
-                        _storyList.value = it.toMutableList()
-                    } else {
-
-                    }
+                    _storyList.value = it.toMutableList()
                 }
             } catch (e: Exception) {
+                // 값을 초기화해서 구독자가 알아차릴 수 있게
+                _toastMessage.value = ""
                 _toastMessage.value = "스토리리스트 가져오는 거 실패"
             }
             endApiCallBack.invoke()

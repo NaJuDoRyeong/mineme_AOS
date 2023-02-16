@@ -5,7 +5,8 @@ import com.najudoryeong.mineme.common_ui.FragmentInfoUtil
 import com.najudoryeong.mineme.story.R
 
 
-object Story_Foundation_Info : FragmentInfoUtil {
+// todo hilt?
+object StoryFoundationInfo : FragmentInfoUtil {
     override val layoutID: Int
         get() = R.layout.fragment_story
     override val toolbarText: Int
@@ -14,4 +15,17 @@ object Story_Foundation_Info : FragmentInfoUtil {
         get() = com.najudoryeong.mineme.common_ui.R.menu.story_menu
     override val bottomNavi_visibility: Int
         get() = View.VISIBLE
+}
+
+object WriteStoryFoundationInfo : FragmentInfoUtil {
+
+    override val layoutID: Int
+        get() = R.layout.fragment_write_story
+    override val toolbarText: Int
+        get() = R.string.write_story
+    override val menu: Int
+        get() = R.menu.write_story_menu
+    override val bottomNavi_visibility: Int
+        get() = View.GONE
+
 }

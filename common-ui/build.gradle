@@ -41,6 +41,11 @@ dependencies {
     api project(path: ':common')
 
 
+    // Material
+    api "com.google.android.material:material:$rootProject.materialVersion"
+    api "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+
+    // RecyclerView
     api "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
 
     // Fragment

@@ -17,6 +17,8 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
     // baseFragment를 상속받은 fragment에서만 제한된 작업 initView 에서 진행
     abstract fun initView()
 
+    open fun menuClick(){}
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -30,6 +32,8 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
             setToolbarTitle(getString(fragment.toolbarText))
         }
 
+        setVisibilityNav()
+
         return binding.root
     }
 
@@ -41,6 +45,13 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initView()
         initMenu()
+
+    }
+
+    private fun setVisibilityNav() {
+        (activity as MainActivityUtil).run {
+            setVisibilityBottomAppbar(fragment.bottomNavi_visibility)
+        }
     }
 
     private fun initMenu() {
@@ -62,12 +73,14 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
                         android.R.id.home -> {
                             popBackStack()
                         }
-                        else -> {}
+                        else -> {
+                            menuClick()
+                        }
                     }
                 }
                 return true
             }
         }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
-
 }
+
