@@ -7,17 +7,19 @@ import java.util.*
 
 class CalendarUtil {
     companion object {
+
         private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
+
+        private fun Calendar.getYear() = get(Calendar.YEAR)
+        private fun Calendar.getMonth() = get(Calendar.MONTH)+1
+        private fun Calendar.getDay() = get(Calendar.DAY_OF_MONTH)
+
 
         fun getTodayDate(): String = Calendar.getInstance().let {
             return "${it.getYear()}-${it.getMonth()}-${it.getDay()}"
         }
 
         // private fun getDateFormat(year : String, month: String, day: String) : String = "${year} ${getMonthFormat(month)}"
-
-        private fun Calendar.getYear() = get(Calendar.YEAR)
-        private fun Calendar.getMonth() = get(Calendar.MONTH)+1
-        private fun Calendar.getDay() = get(Calendar.DAY_OF_MONTH)
 
         fun DatePicker.getDate() = "$year-${month+1}-$dayOfMonth"
 

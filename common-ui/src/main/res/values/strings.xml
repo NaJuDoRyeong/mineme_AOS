@@ -5,4 +5,9 @@
     <string name="confirm">확인</string>
     <string name="newStory">New Story</string>
     <string name="noStory">No Story</string>
+    <string-array name="permission">
+        <item>기록을 위해서 갤러리 위치 접근 동의가 필요해요</item>
+        <item>기록을 위해서 갤러리 위치 접근 동의가 필요해요</item>
+        <item>기록을 위해서 갤러리 위치 접근 동의가 필요해요</item>
+    </string-array>
 </resources>
