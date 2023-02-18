@@ -38,6 +38,15 @@ android {
 
 dependencies {
 
+    api project(path: ':common')
+
+
+    // Material
+    api "com.google.android.material:material:$rootProject.materialVersion"
+    api "androidx.appcompat:appcompat:$rootProject.appCompatVersion"
+
+    // RecyclerView
+    api "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
 
     // Fragment
     api "androidx.fragment:fragment:$rootProject.fragment_version"
@@ -57,6 +66,8 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$rootProject.hiltVersion"
     kapt "com.google.dagger:hilt-android-compiler:$rootProject.hiltVersion"
 
+    // Refresh
+    api "androidx.swiperefreshlayout:swiperefreshlayout:$rootProject.swipeRefreshLayoutVersion"
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.14.2'

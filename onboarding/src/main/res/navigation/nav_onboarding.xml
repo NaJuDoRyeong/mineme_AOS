@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/onBoardingViewPagerFragment"
-        android:name="com.najudoryeong.mineme.onboarding.OnBoardingViewPagerFragment"
+        android:name="com.najudoryeong.mineme.onboarding.ui.OnBoardingViewPagerFragment"
         android:label="OnBoardingViewPagerFragment"
         tools:layout="@layout/fragment_on_boarding_view_pager" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.najudoryeong.mineme.onboarding.LoginFragment"
+        android:name="com.najudoryeong.mineme.onboarding.ui.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/inputUserInfoFragment"
-        android:name="com.najudoryeong.mineme.onboarding.InputUserInfoFragment"
+        android:name="com.najudoryeong.mineme.onboarding.ui.InputUserInfoFragment"
         android:label="InputUserInfoFragment"
         tools:layout="@layout/fragment_input_user_info" >
         <action
@@ -34,7 +34,7 @@
     </fragment>
     <fragment
         android:id="@+id/inputCodeFragment"
-        android:name="com.najudoryeong.mineme.onboarding.InputCodeFragment"
+        android:name="com.najudoryeong.mineme.onboarding.ui.InputCodeFragment"
         android:label="InputCodeFragment"
         tools:layout="@layout/fragment_input_code" />
 </navigation>

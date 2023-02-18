@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.najudoryeong.mineme.story.ui.StoryViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        tools:context=".ui.WriteStoryFragment">
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cafe24_ssurround_air"
+            android:text="날짜"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@id/picture"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/picture"
+            android:layout_width="348dp"
+            android:layout_height="348dp"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/img_select_picture"
+            uri="@{viewModel.imageUri == null ? }"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/date" />
+
+
+        <EditText
+            android:id="@+id/story_content"
+            android:layout_width="0dp"
+            android:layout_height="120dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/edit_shape"
+            android:gravity="top"
+            android:hint="내용을 입력하세요"
+            android:lineSpacingExtra="1sp"
+            android:padding="16dp"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="@id/picture"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@id/picture"
+            app:layout_constraintTop_toBottomOf="@id/picture" />
+
+        <TextView
+            android:id="@+id/location_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/cafe24_ssurround_air"
+            android:text="위치"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@id/story_content"
+            app:layout_constraintTop_toBottomOf="@id/story_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/location_text">
+
+            <Spinner
+                android:id="@+id/do_spinner"
+                android:layout_width="167dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/spinner_shape"
+                android:spinnerMode="dialog" />
+
+            <Spinner
+                android:id="@+id/si_spinner"
+                android:layout_width="167dp"
+                android:layout_height="50dp"
+                android:layout_margin="8dp"
+                android:background="@drawable/spinner_shape"
+                android:spinnerMode="dialog" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

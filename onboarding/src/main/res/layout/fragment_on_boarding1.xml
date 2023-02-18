@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".viewpagerfragment.OnBoarding1Fragment">
+        tools:context=".ui.viewpagerfragment.OnBoarding1Fragment">
 
         <TextView
             android:id="@+id/onboarding1_mainTV"
