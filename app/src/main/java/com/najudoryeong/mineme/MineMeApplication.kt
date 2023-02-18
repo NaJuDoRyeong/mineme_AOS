@@ -18,5 +18,6 @@ class MineMeApplication : Application() {
     private fun printAppKeyHash() {
         val keyHash = Utility.getKeyHash(this)
         Log.d("KeyHash", keyHash)
+        //RBBgnAEhRDraP7W34/nu69W5cMc=
     }
 }

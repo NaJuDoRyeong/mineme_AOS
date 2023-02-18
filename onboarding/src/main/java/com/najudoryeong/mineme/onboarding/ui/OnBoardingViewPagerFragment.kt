@@ -1,17 +1,18 @@
 package com.najudoryeong.mineme.onboarding.ui
 
-import android.Manifest
 import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.snackbar.Snackbar
+import com.najudoryeong.mineme.common.util.PermissionCallback
+import com.najudoryeong.mineme.common.util.PermissionObject
+import com.najudoryeong.mineme.common.util.PermissionType
 import com.najudoryeong.mineme.common_ui.DialogForPermission
 import com.najudoryeong.mineme.onboarding.R
 import com.najudoryeong.mineme.onboarding.databinding.FragmentOnBoardingViewPagerBinding
@@ -21,8 +22,20 @@ import com.najudoryeong.mineme.onboarding.ui.viewpagerfragment.OnBoarding3Fragme
 import dagger.hilt.android.AndroidEntryPoint
 
 
+//todo companion?
+private val messageArray = arrayOf(
+    "기록을 위해서 갤러리 및\n" +
+            " 위치 접근 동의가 필요해요.   ",
+    "사진을 찍기 위해서\n" +
+            "카메라 접근 동의가 필요해요",
+    "알림을 하기 위해서\n" +
+            "푸시 동의가 필요해요."
+)
+
+private val imageArray = arrayOf(R.drawable.img_gps, R.drawable.img_gps, R.drawable.img_gps)
+
 @AndroidEntryPoint
-class OnBoardingViewPagerFragment : Fragment() {
+class OnBoardingViewPagerFragment : Fragment(), PermissionCallback {
 
     companion object {
         var viewpagerNum = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) 3 else 2
@@ -34,43 +47,9 @@ class OnBoardingViewPagerFragment : Fragment() {
     private var _binding: FragmentOnBoardingViewPagerBinding? = null
     private val binding get() = _binding!!
 
-
-    //todo companion?
-    private val messageArray = arrayOf(
-        "기록을 위해서 갤러리 및\n" +
-                " 위치 접근 동의가 필요해요.   ",
-        "사진을 찍기 위해서\n" +
-                "카메라 접근 동의가 필요해요",
-        "알림을 하기 위해서\n" +
-                "푸시 동의가 필요해요."
-    )
-    private val imageArray = arrayOf(R.drawable.img_gps, R.drawable.img_gps, R.drawable.img_gps)
-    private val permissionArray = arrayOf(
-        arrayOf(
-            Manifest.permission.ACCESS_COARSE_LOCATION,  // 도시 블록 단위
-            Manifest.permission.ACCESS_FINE_LOCATION,
-        ),
-        arrayOf(Manifest.permission.CAMERA),
-        arrayOf(Manifest.permission.POST_NOTIFICATIONS)
-    )
+    private val requestPermissionLauncher = PermissionObject.checkPermission(this, { onSuccess() }, { onFail() })
 
 
-    private val requestPermissionLauncher = registerForActivityResult(
-        ActivityResultContracts.RequestMultiplePermissions()
-    ) { permissions ->
-        if (permissions.all { it.value }) {
-            if (binding.viewPager2.currentItem == viewpagerNum - 1) {
-                findNavController().navigate(R.id.next)
-                viewModel.setViewPagerNum(viewpagerNum)
-            }
-            binding.viewPager2.currentItem++
-        } else {
-            Snackbar.make(binding.root, "앱을 사용하기 위해 권한 허용을 해주세요!", Snackbar.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun requestPermission(permissionArray: Array<String>) =
-        requestPermissionLauncher.launch(permissionArray)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,7 +74,7 @@ class OnBoardingViewPagerFragment : Fragment() {
                 .setMessage(messageArray[index])
                 .setImg(imageArray[index])
                 .setOnClickButton {
-                    requestPermission(permissionArray[index])
+                    requestPermissionLauncher.launch(PermissionType.values()[index].permissionArray)
                 }.build().show()
 
         }
@@ -120,5 +99,17 @@ class OnBoardingViewPagerFragment : Fragment() {
                 else -> OnBoarding3Fragment.newInstance()
             }
         }
+    }
+
+    override fun onSuccess() {
+        if (binding.viewPager2.currentItem == viewpagerNum - 1) {
+            findNavController().navigate(R.id.next)
+            viewModel.setViewPagerNum(viewpagerNum)
+        }
+        binding.viewPager2.currentItem++
+    }
+
+    override fun onFail() {
+        Snackbar.make(binding.root, "앱을 사용하기 위해 권한 허용을 해주세요!", Snackbar.LENGTH_SHORT).show()
     }
 }

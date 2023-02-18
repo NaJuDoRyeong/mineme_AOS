@@ -1,5 +1,6 @@
 package com.najudoryeong.mineme.story.ui
 
+import android.net.Uri
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.najudoryeong.mineme.common.domain.entity.Story
@@ -79,6 +80,9 @@ class StoryViewModel @Inject constructor(
     private val dataStoreUseCase: DataStoreUseCase
 ) : ViewModel() {
 
+    private val _imageUri = MutableStateFlow<Uri?>(null)
+    val imageUri: StateFlow<Uri?> = _imageUri
+
     private val _storyList = MutableStateFlow<MutableList<StoryListWithDate>>(mutableListOf())
     val storyList: StateFlow<MutableList<StoryListWithDate>> = _storyList
 
@@ -105,7 +109,15 @@ class StoryViewModel @Inject constructor(
             endApiCallBack.invoke()
             _isApiLoading.value = false
         }
+    }
 
+    fun setToastMessage(newMessage : String){
+        _toastMessage.value = ""
+        _toastMessage.value = newMessage
+    }
+
+    fun setImage(newUri: Uri?){
+        _imageUri.value = newUri
     }
 
 }

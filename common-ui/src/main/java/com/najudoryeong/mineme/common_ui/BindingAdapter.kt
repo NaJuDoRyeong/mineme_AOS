@@ -1,5 +1,6 @@
 package com.najudoryeong.mineme.common_ui
 
+import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -13,6 +14,13 @@ fun bindImageView(imageView: ImageView, photoUrl: String?) {
     Glide.with(imageView.context)
         .load(photoUrl)
         .placeholder(R.drawable.img_profile)
+        .into(imageView)
+}
+
+@BindingAdapter("uri")
+fun bindImageView(imageView: ImageView, uri: Uri?) {
+    Glide.with(imageView.context)
+        .load(uri)
         .into(imageView)
 }
 
