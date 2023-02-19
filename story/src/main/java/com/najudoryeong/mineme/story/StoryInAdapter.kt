@@ -42,8 +42,8 @@ class StoryInAdapter : ListAdapter<Story, RecyclerView.ViewHolder>(StoryInDiffCa
             }
         }
     }
-
 }
+
 
 private class StoryInDiffCallback : DiffUtil.ItemCallback<Story>() {
     override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {

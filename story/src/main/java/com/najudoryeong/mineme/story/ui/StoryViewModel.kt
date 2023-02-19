@@ -80,11 +80,11 @@ class StoryViewModel @Inject constructor(
     private val dataStoreUseCase: DataStoreUseCase
 ) : ViewModel() {
 
-    private val _imageUri = MutableStateFlow<Uri?>(null)
-    val imageUri: StateFlow<Uri?> = _imageUri
+    private val _imageUri = MutableStateFlow<MutableList<Uri>>(mutableListOf())
+    val imageUri: StateFlow<List<Uri>> = _imageUri
 
     private val _storyList = MutableStateFlow<MutableList<StoryListWithDate>>(mutableListOf())
-    val storyList: StateFlow<MutableList<StoryListWithDate>> = _storyList
+    val storyList: StateFlow<List<StoryListWithDate>> = _storyList
 
     private val _isApiLoading = MutableStateFlow(true)
     val isApiLoading: StateFlow<Boolean> = _isApiLoading
@@ -103,11 +103,23 @@ class StoryViewModel @Inject constructor(
                 }
             } catch (e: Exception) {
                 // 값을 초기화해서 구독자가 알아차릴 수 있게
-                _toastMessage.value = ""
-                _toastMessage.value = "스토리리스트 가져오는 거 실패"
+                setToastMessage("스토리리스트 가져오는 거 실패")
             }
             endApiCallBack.invoke()
             _isApiLoading.value = false
+        }
+    }
+
+    fun postNewStory(){
+        viewModelScope.launch {
+            _isApiLoading.value = true
+            try {
+                storyUseCase.readStoryList(dataStoreUseCase.bearerJsonWebToken.first()!!).let {
+
+                }
+            } catch (e : Exception){
+
+            }
         }
     }
 
@@ -116,8 +128,8 @@ class StoryViewModel @Inject constructor(
         _toastMessage.value = newMessage
     }
 
-    fun setImage(newUri: Uri?){
-        _imageUri.value = newUri
+    fun setImage(newUriList: List<Uri>){
+        _imageUri.value = newUriList.toMutableList()
     }
 
 }

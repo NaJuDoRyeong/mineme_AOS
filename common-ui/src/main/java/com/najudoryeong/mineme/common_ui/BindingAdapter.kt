@@ -6,6 +6,7 @@ import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 
 
@@ -22,6 +23,14 @@ fun bindImageView(imageView: ImageView, uri: Uri?) {
     Glide.with(imageView.context)
         .load(uri)
         .into(imageView)
+}
+
+@BindingAdapter("adapter", "submitList", requireAll = true)
+fun bindViewPager(view: ViewPager2, adapter: RecyclerView.Adapter<*>, submitList: List<Any>) {
+    view.adapter = adapter.apply {
+        stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+        (this as ListAdapter<Any, *>).submitList(submitList.toMutableList())
+    }
 }
 
 @BindingAdapter("visible")

@@ -1,24 +1,21 @@
 package com.najudoryeong.mineme.story.ui
 
-import android.content.Intent
-import android.provider.MediaStore
+import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.najudoryeong.mineme.common.util.GalleryObject
-import com.najudoryeong.mineme.common.util.PermissionCallback
-import com.najudoryeong.mineme.common.util.PermissionObject
-import com.najudoryeong.mineme.common.util.PermissionType
 import com.najudoryeong.mineme.common_ui.BaseFragment
 import com.najudoryeong.mineme.common_ui.CalendarUtil.Companion.getTodayDate
 import com.najudoryeong.mineme.common_ui.CalendarUtil.Companion.parseStringToDate
 import com.najudoryeong.mineme.common_ui.DialogForDatePicker
 import com.najudoryeong.mineme.common_ui.R.layout.item_dropdown
+import com.najudoryeong.mineme.story.ImageAdapter
 import com.najudoryeong.mineme.story.databinding.FragmentWriteStoryBinding
 import com.najudoryeong.mineme.story.util.WriteStoryFoundationInfo
 import dagger.hilt.android.AndroidEntryPoint
+import gun0912.tedimagepicker.builder.TedImagePicker
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -52,19 +49,16 @@ val doItems = listOf(
 val siItems = listOf("위치 없음", "마산시1", "마산시4", "마산시2", "마산시3", "마산시6")
 
 @AndroidEntryPoint
-class WriteStoryFragment : BaseFragment<FragmentWriteStoryBinding>(WriteStoryFoundationInfo),
-    PermissionCallback {
+class WriteStoryFragment : BaseFragment<FragmentWriteStoryBinding>(WriteStoryFoundationInfo){
 
     private val storyViewModel: StoryViewModel by viewModels()
-    private val imageResult = GalleryObject.getImageResult(this) { storyViewModel.setImage(it) }
-    private val requestPermissionLauncher = PermissionObject.checkPermission(this, { onSuccess() }, { onFail() })
-
     override fun initView() {
 
         val doAdapter = ArrayAdapter(requireContext(), item_dropdown, doItems)
         val siAdapter = ArrayAdapter(requireContext(), item_dropdown, siItems)
         binding.apply {
             viewModel = storyViewModel
+            adapter = ImageAdapter()
             lifecycleOwner = viewLifecycleOwner
             doSpinner.adapter = doAdapter
             siSpinner.adapter = siAdapter
@@ -78,7 +72,12 @@ class WriteStoryFragment : BaseFragment<FragmentWriteStoryBinding>(WriteStoryFou
                     .build().show()
             }
             picture.setOnClickListener {
-                requestPermissionLauncher.launch(PermissionType.CAMERA.permissionArray)
+                TedImagePicker.with(requireContext())
+                    .errorListener { storyViewModel.setToastMessage("권한 실패") }
+                    .startMultiImage {  storyViewModel.setImage(it) }
+            }
+            pictureViewPager.setOnClickListener {
+                menuClick()
             }
         }
         toastObserve()
@@ -86,6 +85,7 @@ class WriteStoryFragment : BaseFragment<FragmentWriteStoryBinding>(WriteStoryFou
 
     override fun menuClick() {
         Toast.makeText(context, "클릭메뉴", Toast.LENGTH_SHORT).show()
+        storyViewModel.
     }
 
     private fun toastObserve() {
@@ -96,16 +96,6 @@ class WriteStoryFragment : BaseFragment<FragmentWriteStoryBinding>(WriteStoryFou
                 }
             }
         }
-    }
-
-    override fun onSuccess() {
-        val intent = Intent(Intent.ACTION_PICK)
-        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, "image/*")
-        imageResult.launch(intent)
-    }
-
-    override fun onFail() {
-        storyViewModel.setToastMessage("앱을 사용하기 위해 권한을 허용 해주세요")
     }
 
 

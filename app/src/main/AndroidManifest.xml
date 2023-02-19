@@ -16,6 +16,7 @@
         android:theme="@style/Theme.Mineme"
         tools:targetApi="33">
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".MainActivity"
             android:exported="false">
 

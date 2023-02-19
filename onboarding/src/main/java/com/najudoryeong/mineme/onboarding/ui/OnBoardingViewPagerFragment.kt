@@ -46,7 +46,6 @@ class OnBoardingViewPagerFragment : Fragment(), PermissionCallback {
     //todo ViewBindingPropertyDelegate
     private var _binding: FragmentOnBoardingViewPagerBinding? = null
     private val binding get() = _binding!!
-
     private val requestPermissionLauncher = PermissionObject.checkPermission(this, { onSuccess() }, { onFail() })
 
 

@@ -1,17 +1,21 @@
 package com.najudoryeong.mineme.home.ui
 
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.najudoryeong.mineme.common_ui.BaseFragment
 import com.najudoryeong.mineme.home.Home
 import com.najudoryeong.mineme.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(Home) {
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
 
 
 
@@ -27,10 +31,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(Home) {
          */
 
         binding.lifecycleOwner =viewLifecycleOwner
-        binding.vm = viewModel
+        binding.vm = homeViewModel
         //todo recycle
 
-        viewModel.settingHomeData()
+        homeViewModel.settingHomeData()
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -41,10 +45,18 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(Home) {
         requireActivity().onBackPressedDispatcher.addCallback(
             viewLifecycleOwner, callback
         )
+        toastObserve()
+    }
 
 
-
-
+    private fun toastObserve() {
+        lifecycleScope.launch {
+            homeViewModel.toastMessage.collectLatest {
+                if (it.isNotEmpty()) {
+                    Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
 

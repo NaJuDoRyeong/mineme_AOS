@@ -25,21 +25,35 @@ class HomeViewModel @Inject constructor(
     private val _homeData = MutableStateFlow<HomeData?>(null)
     val homeData: StateFlow<HomeData?> = _homeData
 
+    private val _toastMessage = MutableStateFlow("")
+    val toastMessage: StateFlow<String> = _toastMessage
+
+
     fun settingHomeData() {
         viewModelScope.launch {
             var jwt = dataStoreUseCase.bearerJsonWebToken.first()
+            //todo 삭제
             if (jwt == null) jwt = "bearer test"
-            homeUseCase.readHomeInfo(jwt).let {
-                if (it != null){
-                    if (it.newStory.postId == -1){
-                        _isNewStory.value = true
+            try {
+                homeUseCase.readHomeInfo(jwt).let {
+                    if (it != null){
+                        if (it.newStory.postId == -1){
+                            _isNewStory.value = true
+                        }
+                        _homeData.value = it
+                    } else {
+                        Log.d("TESTAPI","API실패")
                     }
-                    _homeData.value = it
-                } else {
-                    Log.d("TESTAPI","API실패")
                 }
+            }catch (e : Exception) {
+                setToastMessage("메인 가져오는 거 실패")
             }
         }
+    }
+
+    private fun setToastMessage(newMessage : String){
+        _toastMessage.value = ""
+        _toastMessage.value = newMessage
     }
 
 }
