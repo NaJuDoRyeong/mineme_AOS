@@ -48,6 +48,7 @@ val doItems = listOf(
 )
 val siItems = listOf("위치 없음", "마산시1", "마산시4", "마산시2", "마산시3", "마산시6")
 
+
 @AndroidEntryPoint
 class WriteStoryFragment : BaseFragment<FragmentWriteStoryBinding>(WriteStoryFoundationInfo){
 
@@ -85,7 +86,6 @@ class WriteStoryFragment : BaseFragment<FragmentWriteStoryBinding>(WriteStoryFou
 
     override fun menuClick() {
         Toast.makeText(context, "클릭메뉴", Toast.LENGTH_SHORT).show()
-        storyViewModel.
     }
 
     private fun toastObserve() {

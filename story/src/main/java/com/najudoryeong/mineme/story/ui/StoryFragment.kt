@@ -19,7 +19,7 @@ import kotlinx.coroutines.launch
 class StoryFragment : BaseFragment<FragmentStoryBinding>(StoryFoundationInfo) {
 
     private val storyViewModel: StoryViewModel by viewModels()
-    private val storyOutAdapter: StoryOutAdapter by lazy { StoryOutAdapter() }
+    private val storyOutAdapter: StoryOutAdapter by lazy { StoryOutAdapter(this) }
 
 
     override fun initView() {
@@ -41,7 +41,6 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(StoryFoundationInfo) {
     override fun menuClick(){
         findNavController().navigate(R.id.next)
     }
-
 
     private fun toastObserve() {
         lifecycleScope.launch{
