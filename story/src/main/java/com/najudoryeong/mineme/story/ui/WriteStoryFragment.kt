@@ -68,8 +68,7 @@ class WriteStoryFragment : BaseFragment<FragmentWriteStoryBinding>(WriteStoryFou
                 DialogForDatePicker.Builder(requireContext())
                     .setInitDate(parseStringToDate(it as TextView)!!)
                     .setOnClickPositiveButton { newDate ->
-                        binding.date.text = newDate
-                    }
+                        binding.date.text = newDate }
                     .build().show()
             }
             picture.setOnClickListener {
