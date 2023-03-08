@@ -1,5 +1,6 @@
 package com.najudoryeong.mineme.common_ui
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.res.Resources
@@ -7,11 +8,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
-import com.najudoryeong.mineme.common_ui.CalendarUtil.Companion.getDate
+import android.widget.NumberPicker
+import com.najudoryeong.mineme.common_ui.CalendarUtil.Companion.getDateNoDay
 import com.najudoryeong.mineme.common_ui.databinding.DialogForDatepickerBinding
 import java.util.*
 
-class DialogForDatePicker(
+class DialogForDatePickerNoDay(
     context: Context,
     private val initDate: Date,
     private val onClickPositiveButton: (String) -> Unit
@@ -27,9 +29,13 @@ class DialogForDatePicker(
         super.onCreate(savedInstanceState)
 
         binding = DialogForDatepickerBinding.inflate(layoutInflater).apply {
-            datePicker.init(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH),null)
+            datePicker.init(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),1,null)
+
+            val daySpinnerId = Resources.getSystem().getIdentifier("day", "id", "android")
+            val daySpinner = datePicker.findViewById<NumberPicker>(daySpinnerId)
+            daySpinner.visibility = View.GONE
             positiveButton.setOnClickListener {
-                onClickPositiveButton.invoke(datePicker.getDate())
+                onClickPositiveButton.invoke(datePicker.getDateNoDay())
                 dismiss()
             }
             negativeButton.setOnClickListener {

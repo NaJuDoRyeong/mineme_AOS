@@ -12,7 +12,7 @@ object StoryFoundationInfo : FragmentInfoUtil {
     override val toolbarText: Int
         get() = R.string.story
     override val menu: Int
-        get() = com.najudoryeong.mineme.common_ui.R.menu.story_menu
+        get() = R.menu.story_menu
     override val bottomNavi_visibility: Int
         get() = View.VISIBLE
 }
@@ -27,5 +27,19 @@ object WriteStoryFoundationInfo : FragmentInfoUtil {
         get() = R.menu.write_story_menu
     override val bottomNavi_visibility: Int
         get() = View.GONE
+
+}
+
+
+object DetailStoryFoundationInfo : FragmentInfoUtil {
+
+    override val layoutID: Int
+        get() = R.layout.fragment_story_detail
+    override val toolbarText: Int
+        get() = R.string.story
+    override val menu: Int
+        get() = R.menu.story_menu
+    override val bottomNavi_visibility: Int
+        get() = View.VISIBLE
 
 }

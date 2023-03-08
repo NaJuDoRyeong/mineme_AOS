@@ -3,6 +3,7 @@ package com.najudoryeong.mineme.story
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -12,7 +13,7 @@ import com.najudoryeong.mineme.story.domain.entity.StoryListWithDate
 import com.najudoryeong.mineme.story.ui.dummy
 
 
-class StoryOutAdapter: ListAdapter<StoryListWithDate, RecyclerView.ViewHolder>(StoryOutDiffCallback()) {
+class StoryOutAdapter(val fragment : Fragment): ListAdapter<StoryListWithDate, RecyclerView.ViewHolder>(StoryOutDiffCallback()) {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -43,7 +44,7 @@ class StoryOutAdapter: ListAdapter<StoryListWithDate, RecyclerView.ViewHolder>(S
         fun bind(storyListWithDate : StoryListWithDate){
             // 외부 이제 나눈다 날짜별로
             with(binding) {
-                outRecyclerView.adapter = StoryInAdapter().apply { submitList(storyListWithDate.posts) }
+                outRecyclerView.adapter = StoryInAdapter(fragment).apply { submitList(storyListWithDate.posts) }
                 yearMonth = getYearMonth(storyListWithDate.year,storyListWithDate.month)
                 executePendingBindings()
             }

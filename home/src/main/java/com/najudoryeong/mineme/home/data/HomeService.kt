@@ -9,7 +9,7 @@ interface HomeService {
 
     @GET("api/test/main/info")
     suspend fun readHomeInfo(
-        @Header("Authorization") token: String,
+        @Header("Authorization") token: String
     ): CommonResponse<HomeData>
 
 

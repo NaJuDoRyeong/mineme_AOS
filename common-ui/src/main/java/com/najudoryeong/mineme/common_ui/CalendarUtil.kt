@@ -9,6 +9,7 @@ class CalendarUtil {
     companion object {
 
         private val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.KOREA)
+        private val dateFormatNoDay = SimpleDateFormat("yyyy-MM", Locale.KOREA)
 
         private fun Calendar.getYear() = get(Calendar.YEAR)
         private fun Calendar.getMonth() = get(Calendar.MONTH)+1
@@ -19,12 +20,21 @@ class CalendarUtil {
             return "${it.getYear()}-${it.getMonth()}-${it.getDay()}"
         }
 
+        fun getTodayDateNoDay() : String = Calendar.getInstance().let {
+            return "${it.getYear()}-${it.getMonth()}"
+        }
+
         // private fun getDateFormat(year : String, month: String, day: String) : String = "${year} ${getMonthFormat(month)}"
 
         fun DatePicker.getDate() = "$year-${month+1}-$dayOfMonth"
 
+        fun DatePicker.getDateNoDay() = "$year-${month+1}"
+
         fun parseStringToDate(textView: TextView): Date? =
             dateFormat.parse(textView.text.toString())
+
+        fun parseStringToDateNoDay(textView: TextView):Date? =
+            dateFormatNoDay.parse(textView.text.toString()+"-01")
 
         fun getMonthFormat(month: String): String {
             return when (month.toInt()) {

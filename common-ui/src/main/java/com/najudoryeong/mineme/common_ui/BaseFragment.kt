@@ -1,6 +1,7 @@
 package com.najudoryeong.mineme.common_ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
@@ -18,6 +19,7 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
     abstract fun initView()
 
     open fun menuClick(){}
+    open fun backClick() : Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -71,7 +73,9 @@ abstract class BaseFragment<T : ViewDataBinding>(val fragment: FragmentInfoUtil)
                 with(navController) {
                     when (menuItem.itemId) {
                         android.R.id.home -> {
-                            popBackStack()
+                            if (!backClick()){
+                                popBackStack()
+                            }
                         }
                         else -> {
                             menuClick()

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_story"
     app:startDestination="@id/storyFragment">
 
@@ -8,13 +9,29 @@
         android:id="@+id/storyFragment"
         android:name="com.najudoryeong.mineme.story.ui.StoryFragment"
         android:label="StoryFragment" >
+
+
         <action
             android:id="@+id/next"
             app:destination="@id/writeStoryFragment"
             app:popUpTo="@id/storyFragment" />
+        <action
+            android:id="@+id/detailStory"
+            app:destination="@id/storyDetailFragment"
+            app:popUpTo="@id/storyFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/writeStoryFragment"
         android:name="com.najudoryeong.mineme.story.ui.WriteStoryFragment"
         android:label="WriteStoryFragment" />
+    <fragment
+        android:id="@+id/storyDetailFragment"
+        android:name="com.najudoryeong.mineme.story.ui.StoryDetailFragment"
+        android:label="fragment_story_detail"
+        tools:layout="@layout/fragment_story_detail" >
+        <argument
+            android:name="postID"
+            app:argType="integer" />
+    </fragment>
 </navigation>

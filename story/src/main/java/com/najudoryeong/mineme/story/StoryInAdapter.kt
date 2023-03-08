@@ -3,14 +3,17 @@ package com.najudoryeong.mineme.story
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.najudoryeong.mineme.common.domain.entity.Story
 import com.najudoryeong.mineme.story.databinding.ItemStoryInBinding
+import com.najudoryeong.mineme.story.ui.StoryFragmentDirections
 
 
-class StoryInAdapter : ListAdapter<Story, RecyclerView.ViewHolder>(StoryInDiffCallback()){
+class StoryInAdapter(val fragment: Fragment) : ListAdapter<Story, RecyclerView.ViewHolder>(StoryInDiffCallback()){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return StoryInViewHolder(
@@ -36,14 +39,15 @@ class StoryInAdapter : ListAdapter<Story, RecyclerView.ViewHolder>(StoryInDiffCa
                 story = storyModel
                 itemView.setOnClickListener {
                     // story 상세보기
+                    fragment.findNavController().navigate(StoryFragmentDirections.detailStory(storyModel.postId))
                     Log.d("testStory","상세보기 클릭")
                 }
                 executePendingBindings()
             }
         }
     }
-
 }
+
 
 private class StoryInDiffCallback : DiffUtil.ItemCallback<Story>() {
     override fun areItemsTheSame(oldItem: Story, newItem: Story): Boolean {
