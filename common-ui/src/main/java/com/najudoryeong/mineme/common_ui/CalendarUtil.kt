@@ -34,7 +34,7 @@ class CalendarUtil {
             dateFormat.parse(textView.text.toString())
 
         fun parseStringToDateNoDay(textView: TextView):Date? =
-            dateFormatNoDay.parse(textView.text.toString()+"-01")
+            dateFormatNoDay.parse(textView.text.toString())
 
         fun getMonthFormat(month: String): String {
             return when (month.toInt()) {

@@ -1,6 +1,7 @@
 package com.najudoryeong.mineme.story.ui
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,15 +9,12 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.najudoryeong.mineme.common_ui.BaseFragment
 import com.najudoryeong.mineme.common_ui.CalendarUtil
-import com.najudoryeong.mineme.common_ui.DialogForDatePicker
-import com.najudoryeong.mineme.common_ui.DialogForDatePickerNoDay
+import com.najudoryeong.mineme.common_ui.DialogForDateNoDay
 import com.najudoryeong.mineme.story.CalendarAdapter
 import com.najudoryeong.mineme.story.R
 import com.najudoryeong.mineme.story.databinding.FragmentStoryBinding
@@ -36,21 +34,13 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(StoryFoundationInfo) {
     private val storyOutAdapter: StoryOutAdapter by lazy { StoryOutAdapter(this) }
     private var nowView: Int = 0
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun initView() {
 
         (activity as AppCompatActivity).run {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setHomeAsUpIndicator(R.drawable.img_story_menu)
         }
 
-        return super.onCreateView(inflater, container, savedInstanceState)
-    }
-
-    override fun initView() {
         binding.apply {
             this.lifecycleOwner = viewLifecycleOwner
             this.adapter = storyOutAdapter
@@ -62,14 +52,14 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(StoryFoundationInfo) {
             }
             this.calendarDate.text = CalendarUtil.getTodayDateNoDay()
             this.calendarDate.setOnClickListener {
-                DialogForDatePickerNoDay.Builder(requireContext())
+                DialogForDateNoDay.Builder(requireContext())
                     .setInitDate(CalendarUtil.parseStringToDateNoDay(it as TextView)!!)
-                    .setOnClickPositiveButton { newDate ->
+                    .setOnClickPositiveButton {
+                        newDate->
                         binding.calendarDate.text = newDate
-                        dateList = getDatesInMonth(newDate.substring(0,4).toInt(), newDate.substring(5,6).toInt())
+                        dateList = getDatesInMonth(newDate.substring(0,4).toInt(), newDate.substring(5).toInt())
                         initCalendarView()
-                    }
-                    .build().show()
+                    }.build().show()
             }
         }
 

@@ -2,6 +2,7 @@ package com.najudoryeong.mineme
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
@@ -32,11 +33,10 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.viewModel = model
 
-
         initAppBar()
         initBottomNav()
-
     }
+
 
     private fun initBottomNav() {
         val navHostFragment =
@@ -55,7 +55,10 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
             setupWithNavController(navController)
             itemIconTintList = null
         }
+
     }
+
+
 
     private fun initAppBar() {
         setSupportActionBar(binding.toolbar)
@@ -73,8 +76,6 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
     }
 
 
-
-
     /** [MainActivityUtil] */
     override fun setToolbarTitle(newTitle: String) {
         binding.toolbar.title = newTitle
@@ -89,5 +90,6 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
     override fun setVisibilityTopAppBar(visibilityMode: Int) {
         binding.topAppBar.visibility = visibilityMode
     }
+
 
 }

@@ -10,7 +10,7 @@ object StoryFoundationInfo : FragmentInfoUtil {
     override val layoutID: Int
         get() = R.layout.fragment_story
     override val toolbarText: Int
-        get() = R.string.story
+        get() = R.string.diary
     override val menu: Int
         get() = R.menu.story_menu
     override val bottomNavi_visibility: Int
