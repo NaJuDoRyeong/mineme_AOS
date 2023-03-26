@@ -48,31 +48,14 @@ var dummy: MutableList<StoryListWithDate> = mutableListOf(
     ),
 
     StoryListWithDate(
-        "2020", "04", listOf(
+        "2023", "03", listOf(
             Story(
-                "2020-04-01",
+                "2023-03-14",
                 5,
                 "마산",
-                "https://upload3.inven.co.kr/upload/2022/03/15/bbs/i16343629296.jpg?MW=800"
-            ),
-            Story(
-                "2020-04-02",
-                6,
-                "마산11",
-                "https://upload3.inven.co.kr/upload/2022/03/15/bbs/i16343629296.jpg?MW=800"
-            ),
-            Story(
-                "2020-04-03",
-                7,
-                "마산21",
-                "https://upload3.inven.co.kr/upload/2022/03/15/bbs/i16343629296.jpg?MW=800"
-            ),
-            Story(
-                "2020-04-04",
-                8,
-                "마산31",
-                "https://upload3.inven.co.kr/upload/2022/03/15/bbs/i16343629296.jpg?MW=800"
-            ),
+                "https://mineme-bucket.s3.ap-northeast-2.amazonaws.com/buddyvet/prod/2/0811f026-4fda-4d28-a416-5b9f1f74b28d.jpg"
+            )
+
         )
     )
 )
@@ -112,27 +95,26 @@ class StoryViewModel @Inject constructor(
         }
     }
 
-    fun postNewStory(){
+    fun postNewStory() {
         viewModelScope.launch {
             _isApiLoading.value = true
             try {
                 storyUseCase.readStoryList(dataStoreUseCase.bearerJsonWebToken.first()!!).let {
 
                 }
-            } catch (e : Exception){
+            } catch (e: Exception) {
 
             }
         }
     }
 
 
-
-    fun setToastMessage(newMessage : String){
+    fun setToastMessage(newMessage: String) {
         _toastMessage.value = ""
         _toastMessage.value = newMessage
     }
 
-    fun setImage(newUriList: List<Uri>){
+    fun setImage(newUriList: List<Uri>) {
         _imageUri.value = newUriList.toMutableList()
     }
 

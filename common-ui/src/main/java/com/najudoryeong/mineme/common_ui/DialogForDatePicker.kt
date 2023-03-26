@@ -6,6 +6,7 @@ import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import com.najudoryeong.mineme.common_ui.CalendarUtil.Companion.getDate
 import com.najudoryeong.mineme.common_ui.databinding.DialogForDatepickerBinding
@@ -25,7 +26,7 @@ class DialogForDatePicker(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Log.d("postTest","click Dalog")
         binding = DialogForDatepickerBinding.inflate(layoutInflater).apply {
             datePicker.init(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH),null)
             positiveButton.setOnClickListener {

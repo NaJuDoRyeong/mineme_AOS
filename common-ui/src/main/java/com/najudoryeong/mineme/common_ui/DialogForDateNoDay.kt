@@ -1,24 +1,20 @@
 package com.najudoryeong.mineme.common_ui
 
-import android.annotation.SuppressLint
+
 import android.app.Dialog
 import android.content.Context
-import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.view.View
-import android.widget.NumberPicker
-import com.najudoryeong.mineme.common_ui.CalendarUtil.Companion.getDateNoDay
-import com.najudoryeong.mineme.common_ui.databinding.DialogForDatepickerBinding
+import android.util.Log
+import com.najudoryeong.mineme.common_ui.databinding.DialogForDatepickerNoDayBinding
 import java.util.*
 
-class DialogForDatePickerNoDay(
-    context: Context,
-    private val initDate: Date,
-    private val onClickPositiveButton: (String) -> Unit
+class DialogForDateNoDay(context: Context,
+                         private val initDate: Date,
+                         private val onClickPositiveButton: (String) -> Unit
 ) : Dialog(context) {
-    private lateinit var binding: DialogForDatepickerBinding
+    private lateinit var binding: DialogForDatepickerNoDayBinding
     private var calendar: Calendar = Calendar.getInstance()
 
     init {
@@ -27,15 +23,22 @@ class DialogForDatePickerNoDay(
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        Log.d("postTest","click Dalogtest")
 
-        binding = DialogForDatepickerBinding.inflate(layoutInflater).apply {
-            datePicker.init(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),1,null)
+        binding = DialogForDatepickerNoDayBinding.inflate(layoutInflater).apply {
 
-            val daySpinnerId = Resources.getSystem().getIdentifier("day", "id", "android")
-            val daySpinner = datePicker.findViewById<NumberPicker>(daySpinnerId)
-            daySpinner.visibility = View.GONE
+            pickerYear.maxValue = 2099
+            pickerYear.minValue = 1980
+
+            pickerYear.value = calendar.get(Calendar.YEAR)
+
+            pickerMonth.maxValue = 12
+            pickerMonth.minValue = 1
+
+            pickerMonth.value = calendar.get(Calendar.MONTH)+1
+
             positiveButton.setOnClickListener {
-                onClickPositiveButton.invoke(datePicker.getDateNoDay())
+                onClickPositiveButton.invoke("${pickerYear.value}-${pickerMonth.value}")
                 dismiss()
             }
             negativeButton.setOnClickListener {
@@ -49,7 +52,7 @@ class DialogForDatePickerNoDay(
 
     class Builder(private val context: Context) {
         private lateinit var initDate: Date
-        private var onClickPositiveButton : (String) -> Unit = {}
+        private var onClickPositiveButton: (String) -> Unit = {}
 
 
         fun setInitDate(initDate: Date) = apply {
@@ -61,10 +64,11 @@ class DialogForDatePickerNoDay(
         }
 
 
-        fun build() = DialogForDatePicker(
+        fun build() = DialogForDateNoDay(
             context,
             initDate,
             onClickPositiveButton
         )
     }
+
 }

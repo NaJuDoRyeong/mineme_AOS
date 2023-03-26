@@ -1,23 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.najudoryeong.mineme.story.ui.StoryViewModel" />
+
+        <variable
+            name="adapter"
+            type="com.najudoryeong.mineme.story.ImageAdapter" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         tools:context=".ui.StoryDetailFragment">
 
-        <!-- TODO: Update blank fragment layout -->
         <TextView
-            android:id="@+id/postID_textView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:textSize="50sp"
-            android:text="@string/hello_blank_fragment" />
+            android:id="@+id/location_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="21dp"
+            android:fontFamily="@font/cafe24_ssurround"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="경남 창원시" />
 
-    </FrameLayout>
+        <TextView
+            android:id="@+id/date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/cafe24_ssurround_air"
+            android:textColor="@color/black"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/location_text"
+            app:layout_constraintTop_toBottomOf="@id/location_text"
+            tools:text="2022 Oct 1" />
+
+        <FrameLayout
+            android:id="@+id/picture_layout"
+            android:layout_width="match_parent"
+            android:layout_height="390dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/date_text">
+
+            <ImageView
+                android:id="@+id/picture"
+                visible="@{viewModel.imageUri.size() == 0}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img_select_picture" />
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/picture_viewPager"
+                adapter="@{adapter}"
+                submitList="@{viewModel.imageUri}"
+                visible="@{viewModel.imageUri.size() != 0}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+        </FrameLayout>
+
+
+        <TextView
+            android:id="@+id/content_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="16dp"
+            android:fontFamily="@font/cafe24_ssurround_air"
+            android:gravity="start"
+            android:paddingHorizontal="21dp"
+            android:text="sagasgsagasgsagasga\ngasgasg\nasdasd\nsadsad"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:layout_constraintTop_toBottomOf="@id/picture_layout" />
+
+        <TextView
+            android:id="@+id/writer_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="21dp"
+            android:fontFamily="@font/cafe24_ssurround_air"
+            android:text="가나다"
+            android:textSize="13sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/content_text"
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </layout>
