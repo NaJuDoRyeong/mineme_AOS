@@ -3,67 +3,89 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <!-- TODO EditStyle-->
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:background="#FFFFFF"
         android:orientation="vertical"
-        android:paddingHorizontal="21dp">
+        android:padding="@dimen/padding_normal">
 
         <TextView
+            android:id="@+id/name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="32dp"
             android:fontFamily="@font/cafe24_ssurround_air"
             android:text="이름"
-            android:textSize="17sp" />
+            android:textColor="@color/bold_text_color"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <EditText
-            android:id="@+id/userName"
+            android:id="@+id/name_et"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/edit_shape"
             android:fontFamily="@font/cafe24_ssurround_air"
             android:hint="이름 입력"
             android:inputType="text"
             android:maxLines="1"
             android:padding="13dp"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/name_tv" />
 
         <TextView
+            android:id="@+id/birthDay_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="3dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/cafe24_ssurround_air"
             android:text="생년월일"
-            android:textSize="17sp" />
+            android:textColor="@color/bold_text_color"
+            android:textSize="17sp"
+            app:layout_constraintStart_toStartOf="@id/name_et"
+            app:layout_constraintTop_toBottomOf="@id/name_et" />
 
 
         <EditText
-            android:id="@+id/userBirthDay"
+            android:id="@+id/birthDay_et"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="8dp"
             android:background="@drawable/edit_shape"
             android:fontFamily="@font/cafe24_ssurround_air"
             android:hint="생년 월일"
             android:inputType="text"
             android:maxLines="1"
             android:padding="13dp"
-            android:textSize="14sp" />
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/birthDay_tv" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_input_info"
+            app:layout_constraintBottom_toTopOf="@id/next_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/birthDay_et" />
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/next_button"
             style="@style/basic_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
+            android:layout_marginBottom="16dp"
             android:text="다음"
-            app:backgroundTint="@color/butter" />
+            app:backgroundTint="@color/butter"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

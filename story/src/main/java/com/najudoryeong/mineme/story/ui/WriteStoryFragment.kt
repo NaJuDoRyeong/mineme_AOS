@@ -1,6 +1,5 @@
 package com.najudoryeong.mineme.story.ui
 
-import android.view.WindowManager
 import android.widget.ArrayAdapter
 import android.widget.TextView
 import android.widget.Toast
@@ -50,7 +49,9 @@ val siItems = listOf("위치 없음", "마산시1", "마산시4", "마산시2", 
 
 
 @AndroidEntryPoint
-class WriteStoryFragment : BaseFragment<FragmentWriteStoryBinding>(WriteStoryFoundationInfo){
+class WriteStoryFragment : BaseFragment<FragmentWriteStoryBinding>(
+    WriteStoryFoundationInfo
+){
 
     private val storyViewModel: StoryViewModel by viewModels()
     override fun initView() {

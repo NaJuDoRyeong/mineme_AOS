@@ -27,7 +27,7 @@ class DialogForDateNoDay(context: Context,
 
         binding = DialogForDatepickerNoDayBinding.inflate(layoutInflater).apply {
 
-            pickerYear.maxValue = 2099
+            pickerYear.maxValue = 2050
             pickerYear.minValue = 1980
 
             pickerYear.value = calendar.get(Calendar.YEAR)

@@ -31,12 +31,15 @@ class InputUserInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.nextButton.setOnClickListener {
-            viewModel.getJsonWebToken { JWT ->
+            viewModel.withJsonWebToken { JWT ->
+                /*
                 viewModel.inputUserInfo(JWT!!,
                     UserInfoRequest(binding.userName.text.toString(),binding.userBirthDay.text.toString())
                 ){
                     findNavController().navigate(R.id.next)
                 }
+                 */
+                findNavController().navigate(R.id.next)
             }
         }
     }

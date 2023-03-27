@@ -10,14 +10,16 @@ import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
-class StoryDetailFragment : BaseFragment<FragmentStoryDetailBinding>(DetailStoryFoundationInfo) {
+class StoryDetailFragment : BaseFragment<FragmentStoryDetailBinding>(
+    DetailStoryFoundationInfo
+) {
 
     private val storyViewModel: StoryViewModel by viewModels()
     private val args: StoryDetailFragmentArgs by navArgs()
 
     override fun initView() {
         binding.apply {
-            postIDTextView.text = args.postID.toString()
+           args.postID.toString()
         }
     }
 

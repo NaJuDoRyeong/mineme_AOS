@@ -5,7 +5,9 @@ import com.najudoryeong.mineme.setting.SettingSecurity
 import com.najudoryeong.mineme.setting.databinding.FragmentSettingSecurityBinding
 
 
-class SettingSecurityFragment : BaseFragment<FragmentSettingSecurityBinding>(SettingSecurity) {
+class SettingSecurityFragment : BaseFragment<FragmentSettingSecurityBinding>(
+    SettingSecurity
+) {
 
     override fun initView() {
         binding.apply {

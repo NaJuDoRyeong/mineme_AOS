@@ -11,6 +11,7 @@ todo 공통 사용 리소스 common_ui
     </style>
 
     <style name="basic_btn">
+        <item name="android:textSize">17sp</item>
         <item name="android:background">@drawable/btn_shape</item>
         <item name="android:fontFamily">@font/cafe24_ssurround_air</item>
         <item name="android:gravity">center</item>

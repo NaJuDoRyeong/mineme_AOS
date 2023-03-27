@@ -4,6 +4,7 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.NavController
 import com.najudoryeong.mineme.common_ui.BaseFragment
 import com.najudoryeong.mineme.home.Home
 import com.najudoryeong.mineme.home.databinding.FragmentHomeBinding
@@ -13,13 +14,10 @@ import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>(Home) {
-
+class HomeFragment() : BaseFragment<FragmentHomeBinding>(Home) {
     private val homeViewModel: HomeViewModel by viewModels()
-
-
-
     override fun initView() {
+
         /*
 
         데이터 바인딩 객체의 라이플 사이클 오너를 프래그먼트의 라이프 사이클로 지정하는 것

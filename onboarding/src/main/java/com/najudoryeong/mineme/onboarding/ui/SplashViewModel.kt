@@ -1,25 +1,27 @@
 package com.najudoryeong.mineme.onboarding.ui
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.najudoryeong.mineme.common.data.dto.CodeRequest
 import com.najudoryeong.mineme.common.data.dto.UserInfoRequest
-import com.najudoryeong.mineme.common.data.source.UserService
+import com.najudoryeong.mineme.common.domain.usecase.AuthUseCase
 import com.najudoryeong.mineme.common.domain.usecase.DataStoreUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SplashViewModel @Inject constructor(
-    private val userService: UserService,
+    private val authUseCase: AuthUseCase,
     private val dataStoreUseCase: DataStoreUseCase
 ) : ViewModel() {
 
-    fun getJsonWebToken(callback: (String?) -> Unit) {
+    fun withJsonWebToken(callback: (String?) -> Unit) {
         viewModelScope.launch {
-            callback.invoke(dataStoreUseCase.bearerJsonWebToken.first())
+            callback.invoke(dataStoreUseCase.bearerJsonWebToken.firstOrNull())
         }
     }
 
@@ -41,23 +43,25 @@ class SplashViewModel @Inject constructor(
     }
 
 
-    fun signup(token: String, callback: () -> Unit) {
+    fun signup(token: String, createCallback: () -> Unit, loginCallback: () -> Unit) {
         viewModelScope.launch {
-            dataStoreUseCase.editJsonWebToken("testtoken123")
-            dataStoreUseCase.editUserCode("testcode123")
-            callback.invoke()
-            /*
-            //todo userName
-            authService.login(LoginRequest(token,ProviderType.KAKAO.name,"test123")).let {
-                if (it.success) {
-                    dataStoreUseCase.editJsonWebToken(it.data.jwt)
-                    dataStoreUseCase.editUserCode(it.data.code)
-                    callback.invoke()
+            try {
+                val response = authUseCase.login(token)
+                dataStoreUseCase.editJsonWebToken(response.body()?.data?.jwt!!)
+                if (response.code() == 200) {
+                    loginCallback.invoke()
+                } else {
+                    createCallback.invoke()
                 }
+            } catch (e: Exception) {
+                Log.d("buddyTest", e.message.toString())
             }
-             */
+
         }
     }
+
+    /*
+
 
     fun inputUserInfo(token: String, userInfoRequest: UserInfoRequest, callback: () -> Unit) {
         viewModelScope.launch {
@@ -76,4 +80,8 @@ class SplashViewModel @Inject constructor(
             }
         }
     }
+
+
+    */
+
 }

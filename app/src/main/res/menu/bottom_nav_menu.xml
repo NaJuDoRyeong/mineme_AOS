@@ -10,17 +10,7 @@
         android:id="@+id/nav_story"
         android:icon="@drawable/bottom_story_on_off"
         android:title="" />
-
-    <item
-        android:id="@+id/placeholder"
-        android:title="" />
-
-    <!-- todo fix -->
-    <item
-        android:id="@+id/fix"
-        android:icon="@drawable/bottom_story_on_off"
-        android:title="" />
-
+    
     <item
         android:id="@+id/nav_setting"
         android:icon="@drawable/bottom_setting_on_off"

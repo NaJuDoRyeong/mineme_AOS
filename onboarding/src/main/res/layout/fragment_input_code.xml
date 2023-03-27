@@ -6,28 +6,100 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="@dimen/padding_normal"
         tools:context=".ui.InputCodeFragment">
 
-        <!-- TODO: Update blank fragment layout -->
+
         <TextView
             android:id="@+id/main_tv"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="코드입력"
-            android:textSize="50dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cafe24_ssurround"
+            android:lineSpacingExtra="5sp"
+            android:text="상대방의 코드를\n적어주세요"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:layout_marginTop="32dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sub_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/cafe24_ssurround_air"
+            android:text="내 코드는"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="@id/main_tv"
+            app:layout_constraintTop_toBottomOf="@id/main_tv" />
+
+        <TextView
+            android:id="@+id/code_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/img_code_background"
+            android:fontFamily="@font/cafe24_ssurround"
+            android:text="AX123456"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="@id/sub_tv"
+            app:layout_constraintEnd_toStartOf="@id/code_iv"
+            app:layout_constraintStart_toEndOf="@id/sub_tv"
+            app:layout_constraintTop_toTopOf="@id/sub_tv" />
+
+        <ImageView
+            android:id="@+id/code_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_input_code"
+            app:layout_constraintBottom_toBottomOf="@id/sub_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/main_tv" />
+
+        <ImageView
+            android:id="@+id/code_description_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/img_code_description"
+            app:layout_constraintEnd_toEndOf="@id/code_iv"
+            app:layout_constraintStart_toStartOf="@id/code_tv"
+            app:layout_constraintTop_toBottomOf="@id/code_tv" />
+
+        <TextView
+            android:id="@+id/code_description_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/cafe24_ssurround_air"
+            android:text="상대방의 코드를 입력해주세요"
+            android:textColor="@color/black"
+            android:textSize="17sp"
+            app:layout_constraintBottom_toTopOf="@id/code_et"
+            app:layout_constraintStart_toStartOf="@id/code_et" />
 
         <EditText
-            android:id="@+id/code"
+            android:id="@+id/code_et"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/main_tv" />
+            android:layout_height="50dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/edit_shape"
+            android:fontFamily="@font/cafe24_ssurround_air"
+            android:hint="생년 월일"
+            android:inputType="text"
+            android:maxLines="1"
+            android:padding="13dp"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toTopOf="@id/next_button" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/next_button"
             style="@style/basic_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
             android:text="다음"
             app:backgroundTint="@color/butter"
             app:layout_constraintBottom_toBottomOf="parent" />
