@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
@@ -14,19 +13,19 @@ import androidx.navigation.ui.setupWithNavController
 import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import com.najudoryeong.mineme.home.ui.HomeFragment
-import com.najudoryeong.mineme.setting.fragment.ui.SettingFragment
-import com.najudoryeong.mineme.story.ui.StoryFragment
+import com.najudoryeong.mineme.home.R.navigation.nav_home
+import com.najudoryeong.mineme.story.R.navigation.nav_story
+import com.najudoryeong.mineme.setting.R.navigation.nav_setting
 
 
 // 하위 모듈이 MainViewModel 코드에 접근할 수 있게 MainViewModelUtil 상속 구현
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity(), MainActivityUtil {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private val mainViewModel: MainViewModel by viewModels()
+    private lateinit var appBarConfiguration: AppBarConfiguration
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,22 +45,29 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_containerView) as NavHostFragment
         navController = navHostFragment.navController
-
-        // appbar 구성 요소 설정
-        // 바텀네비게이션과 연결하면 해당 프래그먼트에 네비게이션으로는 backButton x
-        appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.nav_home, com.najudoryeong.mineme.story.R.id.storyFragment, R.id.nav_setting)
+        val inflater = navController.navInflater
+        val configuration = AppBarConfiguration(
+            setOf(
+                com.najudoryeong.mineme.home.R.id.homeFragment,
+                com.najudoryeong.mineme.setting.R.id.settingFragment
+            )
         )
+        NavigationUI.setupActionBarWithNavController(this, navController,configuration)
 
-        // navController 와 actionbar 연결
-//        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
-        NavigationUI.setupActionBarWithNavController(this, navController)
         binding.bottomNavigationView.run {
             setupWithNavController(navController)
             itemIconTintList = null
         }
-    }
 
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            navHostFragment.navController.graph = when (it.itemId) {
+                R.id.nav_home -> inflater.inflate(nav_home)
+                R.id.nav_story -> inflater.inflate(nav_story)
+                else -> inflater.inflate(nav_setting)
+            }
+            true
+        }
+    }
 
     private fun initAppBar() {
         setSupportActionBar(binding.toolbar)

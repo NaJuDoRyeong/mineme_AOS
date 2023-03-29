@@ -31,8 +31,8 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(StoryFoundationInfo) {
     private var nowView: Int = 0
 
     override fun initView() {
+
         (activity as AppCompatActivity).run {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setHomeAsUpIndicator(R.drawable.img_story_menu)
         }
 
@@ -42,7 +42,6 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(StoryFoundationInfo) {
             this.lifecycleOwner = viewLifecycleOwner
             this.adapter = storyOutAdapter
             this.viewModel = storyViewModel
-
             this.swiperefreshlayout.setOnRefreshListener {
                 storyViewModel.raedStory {
                     swiperefreshlayout.isRefreshing = false
