@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
     private lateinit var binding: ActivityMainBinding
     private lateinit var navController: NavController
     private val mainViewModel: MainViewModel by viewModels()
-    private lateinit var appBarConfiguration: AppBarConfiguration
-
+    private var pastNav = R.id.nav_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +51,7 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
                 com.najudoryeong.mineme.setting.R.id.settingFragment
             )
         )
-        NavigationUI.setupActionBarWithNavController(this, navController,configuration)
+        NavigationUI.setupActionBarWithNavController(this, navController, configuration)
 
         binding.bottomNavigationView.run {
             setupWithNavController(navController)
@@ -60,10 +59,13 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
         }
 
         binding.bottomNavigationView.setOnItemSelectedListener {
-            navHostFragment.navController.graph = when (it.itemId) {
-                R.id.nav_home -> inflater.inflate(nav_home)
-                R.id.nav_story -> inflater.inflate(nav_story)
-                else -> inflater.inflate(nav_setting)
+            if (pastNav != it.itemId) {
+                navHostFragment.navController.graph = when (it.itemId) {
+                    R.id.nav_home -> inflater.inflate(nav_home)
+                    R.id.nav_story -> inflater.inflate(nav_story)
+                    else -> inflater.inflate(nav_setting)
+                }
+                pastNav = it.itemId
             }
             true
         }

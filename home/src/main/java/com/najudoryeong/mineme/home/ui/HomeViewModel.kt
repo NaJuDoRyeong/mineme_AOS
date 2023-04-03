@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.najudoryeong.mineme.common.domain.usecase.DataStoreUseCase
+import com.najudoryeong.mineme.common_ui.ToastType
 import com.najudoryeong.mineme.home.domain.entity.HomeData
 import com.najudoryeong.mineme.home.domain.usecase.HomeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -44,14 +45,15 @@ class HomeViewModel @Inject constructor(
                     }
                 }
             } catch (e: Exception) {
-                setToastMessage("메인 가져오는 거 실패")
+                setToastMessage("메인 가져오는 거 실패",ToastType.ERROR)
             }
         }
     }
 
-    private fun setToastMessage(newMessage: String) {
+    fun setToastMessage(newMessage: String, toastType: ToastType) {
         _toastMessage.value = ""
-        _toastMessage.value = newMessage
+        _toastMessage.value = "${toastType.icon}   $newMessage"
     }
+
 
 }

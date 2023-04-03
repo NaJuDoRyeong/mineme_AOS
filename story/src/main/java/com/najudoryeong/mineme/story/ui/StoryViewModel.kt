@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.najudoryeong.mineme.common.domain.entity.Story
 import com.najudoryeong.mineme.story.domain.entity.StoryListWithDate
 import com.najudoryeong.mineme.common.domain.usecase.DataStoreUseCase
+import com.najudoryeong.mineme.common_ui.ToastType
 import com.najudoryeong.mineme.story.R
 import com.najudoryeong.mineme.story.domain.usecase.StoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -109,9 +110,9 @@ class StoryViewModel @Inject constructor(
     }
 
 
-    fun setToastMessage(newMessage: String) {
+    fun setToastMessage(newMessage: String, toastType: ToastType) {
         _toastMessage.value = ""
-        _toastMessage.value = newMessage
+        _toastMessage.value = "${toastType.icon}   $newMessage"
     }
 
     fun setImage(newUriList: List<Uri>) {

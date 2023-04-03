@@ -10,6 +10,7 @@ import com.najudoryeong.mineme.common_ui.CalendarUtil.Companion.getTodayDate
 import com.najudoryeong.mineme.common_ui.CalendarUtil.Companion.parseStringToDate
 import com.najudoryeong.mineme.common_ui.DialogForDatePicker
 import com.najudoryeong.mineme.common_ui.R.layout.item_dropdown
+import com.najudoryeong.mineme.common_ui.ToastType
 import com.najudoryeong.mineme.story.ImageAdapter
 import com.najudoryeong.mineme.story.databinding.FragmentWriteStoryBinding
 import com.najudoryeong.mineme.story.util.WriteStoryFoundationInfo
@@ -74,7 +75,7 @@ class WriteStoryFragment : BaseFragment<FragmentWriteStoryBinding>(
             }
             picture.setOnClickListener {
                 TedImagePicker.with(requireContext())
-                    .errorListener { storyViewModel.setToastMessage("권한 실패") }
+                    .errorListener { storyViewModel.setToastMessage("권한 실패", ToastType.ERROR) }
                     .startMultiImage {  storyViewModel.setImage(it) }
             }
             pictureViewPager.setOnClickListener {

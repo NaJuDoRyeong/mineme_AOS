@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.najudoryeong.mineme.common_ui.BaseFragment
 import com.najudoryeong.mineme.common_ui.CalendarUtil
 import com.najudoryeong.mineme.common_ui.DialogForDateNoDay
+import com.najudoryeong.mineme.common_ui.ToastType
 import com.najudoryeong.mineme.story.CalendarAdapter
 import com.najudoryeong.mineme.story.R
 import com.najudoryeong.mineme.story.databinding.FragmentStoryBinding
@@ -46,6 +47,7 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(StoryFoundationInfo) {
                 storyViewModel.raedStory {
                     swiperefreshlayout.isRefreshing = false
                 }
+                storyViewModel.setToastMessage("스토리 갱신",ToastType.INFO)
             }
 
             this.calendarDate.text = CalendarUtil.getTodayDateNoDay()
