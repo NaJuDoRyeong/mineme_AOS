@@ -84,24 +84,23 @@ class StoryViewModel @Inject constructor(
         viewModelScope.launch {
             _isApiLoading.value = true
             _storyList.value = dummy
-            try {
-                storyUseCase.readStoryList(dataStoreUseCase.bearerJsonWebToken.first()!!).let {
-                    _storyList.value = it.toMutableList()
-                }
-            } catch (e: Exception) {
-                // 값을 초기화해서 구독자가 알아차릴 수 있게
-            }
+//            try {
+//                storyUseCase.readStoryList(dataStoreUseCase.bearerJsonWebToken.first()!!).let {
+//                    _storyList.value = it.toMutableList()
+//                }
+//            } catch (e: Exception) {
+//                // 값을 초기화해서 구독자가 알아차릴 수 있게
+//            }
             endApiCallBack.invoke()
             _isApiLoading.value = false
         }
     }
 
-    fun postNewStory() {
+    fun createStory() {
         viewModelScope.launch {
             _isApiLoading.value = true
             try {
                 storyUseCase.readStoryList(dataStoreUseCase.bearerJsonWebToken.first()!!).let {
-
                 }
             } catch (e: Exception) {
 

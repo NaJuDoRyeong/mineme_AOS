@@ -26,12 +26,13 @@ fun bindImageView(imageView: ImageView, uri: Uri?) {
 }
 
 @BindingAdapter("adapter", "submitList", requireAll = true)
-fun bindViewPager(view: ViewPager2, adapter: RecyclerView.Adapter<*>, submitList: List<Any>) {
+fun bindViewPager(view: ViewPager2, adapter: RecyclerView.Adapter<*>, submitList: List<Any>?) {
     view.adapter = adapter.apply {
         stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
-        (this as ListAdapter<Any, *>).submitList(submitList.toMutableList())
+        (this as ListAdapter<Any, *>).submitList(submitList?.toMutableList())
     }
 }
+
 
 @BindingAdapter("visible")
 fun setVisibility(view: View, flag: Boolean) {
