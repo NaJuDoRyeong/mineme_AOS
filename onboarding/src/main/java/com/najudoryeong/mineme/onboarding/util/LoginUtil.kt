@@ -1,4 +1,4 @@
-package com.najudoryeong.mineme.onboarding
+package com.najudoryeong.mineme.onboarding.util
 
 import android.app.Activity
 import android.content.Context
@@ -14,6 +14,7 @@ class LoginUtil {
 
     companion object {
 
+        /** mainActivity로 전환하는 함수 **/
         fun startMainActivity(activity: Activity, mainActivityClass: Class<*>) {
             val intent = Intent(activity, mainActivityClass).apply {
                 flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
@@ -21,6 +22,7 @@ class LoginUtil {
             activity.startActivity(intent)
         }
 
+        /** 카카오 소셜 로그인을 통해 token을 받아오는 함수**/
         fun loginWithKaKao(
             context: Context,
             onLoginSuccess: (String?) -> Unit

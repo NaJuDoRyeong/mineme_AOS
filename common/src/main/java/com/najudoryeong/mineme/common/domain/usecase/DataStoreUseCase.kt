@@ -8,6 +8,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import androidx.datastore.preferences.core.Preferences
+import com.najudoryeong.mineme.common.util.LoginState
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -16,15 +17,15 @@ class DataStoreUseCase @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) {
 
-
     val bearerJsonWebToken: Flow<String?> =
         dataStore.data.map { preferences -> preferences[jsonWebToken_key]?.toBearerToken() }
 
     val myCode: Flow<String?> =
         dataStore.data.map { preferences -> preferences[user_code] }
 
-    val permissionNum: Flow<Int?> =
-        dataStore.data.map { preferences -> preferences[permission_num] }
+    val loginState: Flow<String?> = dataStore.data.map {
+        preferences -> preferences[login_state]
+    }
 
     private fun String.toBearerToken(): String = "Bearer $this"
 
@@ -42,18 +43,14 @@ class DataStoreUseCase @Inject constructor(
         }
     }
 
-    suspend fun editPermissionNum(num: Int) {
-        dataStore.edit {
-            it[permission_num] = num
-        }
+    suspend fun editLoginState(loginState: String) {
+        dataStore.edit { it[login_state] = loginState }
     }
-
 
     companion object {
         const val DATA_STORE_NAME = "app"
-
         private val jsonWebToken_key = stringPreferencesKey("JSON_WEB_TOKEN")
-        private val permission_num = intPreferencesKey("PERMISSION_NUM")
+        private val login_state = stringPreferencesKey("LOGIN_STATE")
         private val user_code = stringPreferencesKey("USER_CODE")
     }
 

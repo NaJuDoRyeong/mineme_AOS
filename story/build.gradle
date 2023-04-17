@@ -42,7 +42,7 @@ dependencies {
     api project(path: ':common')
 
     // ImagePicker
-    implementation 'io.github.ParkSangGwon:tedimagepicker:1.2.8'
+    implementation 'io.github.ParkSangGwon:tedimagepicker:1.4.2'
 
     // Navigation
     api "androidx.navigation:navigation-fragment-ktx:$rootProject.nav_version"
