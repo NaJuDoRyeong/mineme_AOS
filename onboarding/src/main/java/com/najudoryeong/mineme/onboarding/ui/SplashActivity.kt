@@ -2,6 +2,7 @@ package com.najudoryeong.mineme.onboarding.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -29,9 +30,8 @@ class SplashActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initNav()
-        checkJWT()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
+        checkJWT()
     }
 
     /** 기기에 JWT가 있는지 검사합니다.
@@ -40,40 +40,45 @@ class SplashActivity : AppCompatActivity() {
      **/
     private fun checkJWT() {
         splashViewModel.withLoginState { s ->
+            Log.d("state",s.toString())
             val nav = if (s == null) {
+                splashViewModel.editLoginState(LoginState.ONBOARDING)
                 R.id.onBoardingViewPagerFragment
             } else {
-                when (LoginState.valueOf(s)) {
-                    LoginState.ONBOARDING -> {
+                when (s) {
+                    "onboarding" -> {
                         R.id.onBoardingViewPagerFragment
                     }
-                    LoginState.LOGIN -> {
+                    "login" -> {
                         R.id.loginFragment
                     }
-                    LoginState.USERINFO
+                    "userinfo"
                     -> {
                         R.id.inputUserInfoFragment
                     }
-                    LoginState.CODE
+                    "code"
                     -> {
                         R.id.inputCodeFragment
                     }
-                    LoginState.FINISH
+                    "finish"
                     -> {
                         LoginUtil.startMainActivity(this, mainActivityClass)
                         -1
                     }
+                    else -> {
+                        -1
+                    }
                 }
             }
-            settingNav(nav)
+            initNav(nav)
         }
     }
 
-    private fun initNav() {
-        val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragment_containerView) as NavHostFragment
+    private fun initNav(nav: Int) {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_containerView) as NavHostFragment
         navController = navHostFragment.navController
         binding.fragmentContainerView.visibility = View.VISIBLE
+        settingNav(nav)
     }
 
     private fun settingNav(nav: Int) {

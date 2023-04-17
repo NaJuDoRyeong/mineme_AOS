@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.najudoryeong.mineme.common.util.LoginState
 import com.najudoryeong.mineme.onboarding.util.LoginUtil
 import com.najudoryeong.mineme.onboarding.R
 import com.najudoryeong.mineme.onboarding.databinding.FragmentLoginBinding
@@ -49,7 +50,10 @@ class LoginFragment : Fragment() {
             LoginUtil.loginWithKaKao(requireContext()) { token ->
                 splashViewModel.signup(token!!, {
                     LoginUtil.startMainActivity(requireActivity(), mainActivityClass)
-                }, { findNavController().navigate(R.id.next) })
+                }, {
+                    splashViewModel.editLoginState(LoginState.USERINFO)
+                    findNavController().navigate(R.id.next)
+                })
             }
         }
 

@@ -44,15 +44,13 @@ class DataStoreUseCase @Inject constructor(
     }
 
     suspend fun editLoginState(loginState: String) {
-        dataStore.edit {
-            it[login_state] = loginState
-        }
+        dataStore.edit { it[login_state] = loginState }
     }
 
     companion object {
         const val DATA_STORE_NAME = "app"
         private val jsonWebToken_key = stringPreferencesKey("JSON_WEB_TOKEN")
-        private val login_state = stringPreferencesKey("JSON_WEB_TOKEN")
+        private val login_state = stringPreferencesKey("LOGIN_STATE")
         private val user_code = stringPreferencesKey("USER_CODE")
     }
 

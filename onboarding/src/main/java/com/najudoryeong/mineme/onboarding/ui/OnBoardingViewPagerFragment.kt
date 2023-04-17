@@ -6,10 +6,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.snackbar.Snackbar
+import com.najudoryeong.mineme.common.util.LoginState
 import com.najudoryeong.mineme.common.util.PermissionCallback
 import com.najudoryeong.mineme.common.util.PermissionObject
 import com.najudoryeong.mineme.common.util.PermissionType
@@ -40,6 +42,7 @@ class OnBoardingViewPagerFragment : Fragment(), PermissionCallback {
     private val viewpagerNum = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) 3 else 2
     private var _binding: FragmentOnBoardingViewPagerBinding? = null
     private val binding get() = _binding!!
+    private val splashViewModel: SplashViewModel by viewModels()
 
     private val requestPermissionLauncher = PermissionObject.checkPermission(this, { onSuccess() }, { onFail() })
 
@@ -90,6 +93,7 @@ class OnBoardingViewPagerFragment : Fragment(), PermissionCallback {
 
     override fun onSuccess() {
         if (binding.viewPager2.currentItem == viewpagerNum - 1) {
+            splashViewModel.editLoginState(LoginState.LOGIN)
             findNavController().navigate(R.id.next)
         }
         binding.viewPager2.currentItem++

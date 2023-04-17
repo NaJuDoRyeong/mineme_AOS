@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.najudoryeong.mineme.onboarding.domain.usecase.AuthUseCase
 import com.najudoryeong.mineme.common.domain.usecase.DataStoreUseCase
+import com.najudoryeong.mineme.common.util.LoginState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -25,9 +26,16 @@ class SplashViewModel @Inject constructor(
         }
     }
 
+    fun editLoginState(loginState: LoginState){
+        viewModelScope.launch(Dispatchers.IO) {
+            dataStoreUseCase.editLoginState(loginState.s)
+        }
+    }
+
+
     /** 사용자가 진행항 로그인 진행 상황 불러오는 함수**/
     fun withLoginState(callback: (String?) -> Unit) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             callback.invoke(dataStoreUseCase.loginState.first())
         }
     }

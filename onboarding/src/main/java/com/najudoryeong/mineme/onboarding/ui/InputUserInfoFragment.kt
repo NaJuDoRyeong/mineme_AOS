@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import com.najudoryeong.mineme.common.util.LoginState
 import com.najudoryeong.mineme.onboarding.R
 import com.najudoryeong.mineme.onboarding.databinding.FragmentInputUserInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -14,7 +15,7 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class InputUserInfoFragment : Fragment() {
 
-    private val viewModel: SplashViewModel by viewModels()
+    private val splashViewModel: SplashViewModel by viewModels()
 
     private var _binding: FragmentInputUserInfoBinding? = null
     private val binding get() = _binding!!
@@ -30,7 +31,11 @@ class InputUserInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.nextButton.setOnClickListener {
-            viewModel.inputUserInfo(binding.nameEt.text.toString(),binding.birthDayEt.text.toString()){
+            splashViewModel.inputUserInfo(
+                binding.nameEt.text.toString(),
+                binding.birthDayEt.text.toString()
+            ) {
+                splashViewModel.editLoginState(LoginState.CODE)
                 findNavController().navigate(R.id.next)
             }
         }

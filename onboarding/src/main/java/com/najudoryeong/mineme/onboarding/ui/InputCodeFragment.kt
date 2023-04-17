@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import com.najudoryeong.mineme.common.util.LoginState
 import com.najudoryeong.mineme.onboarding.databinding.FragmentInputCodeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -16,7 +17,7 @@ class InputCodeFragment : Fragment() {
     @Inject
     lateinit var mainActivityClass: Class<*>
 
-    private val viewModel: SplashViewModel by viewModels()
+    private val splashViewModel: SplashViewModel by viewModels()
 
     private var _binding: FragmentInputCodeBinding? = null
     private val binding get() = _binding!!
@@ -32,7 +33,8 @@ class InputCodeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.nextButton.setOnClickListener {
-            viewModel.inputCouleCode(binding.codeEt.text.toString())
+            splashViewModel.editLoginState(LoginState.FINISH)
+            splashViewModel.inputCouleCode(binding.codeEt.text.toString())
         }
     }
 
