@@ -2,7 +2,6 @@ package com.najudoryeong.mineme
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
@@ -14,8 +13,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.najudoryeong.mineme.common_ui.MainActivityUtil
 import com.najudoryeong.mineme.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import com.najudoryeong.mineme.story.R.id.storyFragment
-import com.najudoryeong.mineme.home.R.id.homeFragment
+import com.najudoryeong.mineme.home.R.navigation.nav_home
+import com.najudoryeong.mineme.story.R.navigation.nav_story
+import com.najudoryeong.mineme.setting.R.navigation.nav_setting
 
 
 // 하위 모듈이 MainViewModel 코드에 접근할 수 있게 MainViewModelUtil 상속 구현
@@ -23,42 +23,53 @@ import com.najudoryeong.mineme.home.R.id.homeFragment
 class MainActivity : AppCompatActivity(), MainActivityUtil {
 
     private lateinit var binding: ActivityMainBinding
-    private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
-    private val model: MainViewModel by viewModels()
-
+    private val mainViewModel: MainViewModel by viewModels()
+    private var pastNav = R.id.nav_home
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
-        binding.viewModel = model
+        binding.viewModel = mainViewModel
 
         initAppBar()
         initBottomNav()
     }
 
+    override fun onSupportNavigateUp(): Boolean {
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
 
     private fun initBottomNav() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragment_containerView) as NavHostFragment
         navController = navHostFragment.navController
-
-        // appbar 구성 요소 설정
-        // 바텀네비게이션과 연결하면 해당 프래그먼트에 네비게이션으로는 backButton x
-        appBarConfiguration = AppBarConfiguration(
-            setOf(homeFragment, storyFragment, R.id.nav_setting)
+        val inflater = navController.navInflater
+        val configuration = AppBarConfiguration(
+            setOf(
+                com.najudoryeong.mineme.home.R.id.homeFragment,
+                com.najudoryeong.mineme.setting.R.id.settingFragment
+            )
         )
+        NavigationUI.setupActionBarWithNavController(this, navController, configuration)
 
-        // navController 와 actionbar 연결
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration)
         binding.bottomNavigationView.run {
             setupWithNavController(navController)
             itemIconTintList = null
         }
 
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            if (pastNav != it.itemId) {
+                navHostFragment.navController.graph = when (it.itemId) {
+                    R.id.nav_home -> inflater.inflate(nav_home)
+                    R.id.nav_story -> inflater.inflate(nav_story)
+                    else -> inflater.inflate(nav_setting)
+                }
+                pastNav = it.itemId
+            }
+            true
+        }
     }
-
-
 
     private fun initAppBar() {
         setSupportActionBar(binding.toolbar)
@@ -71,7 +82,6 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
 
     private fun showAppBar() {
         binding.bottomAppBar.visibility = View.VISIBLE
-        binding.fab.visibility = View.VISIBLE
         binding.topAppBar.visibility = View.VISIBLE
     }
 
@@ -84,7 +94,6 @@ class MainActivity : AppCompatActivity(), MainActivityUtil {
 
     override fun setVisibilityBottomAppbar(visibilityMode: Int) {
         binding.bottomAppBar.visibility = visibilityMode
-        binding.fab.visibility = visibilityMode
     }
 
     override fun setVisibilityTopAppBar(visibilityMode: Int) {

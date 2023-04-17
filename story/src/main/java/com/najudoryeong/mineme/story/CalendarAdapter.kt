@@ -38,8 +38,10 @@ class CalendarAdapter(private val dataList: Array<CalendarData>) :
         fun bind(calendarData: CalendarData) {
 
             if (calendarData.day.toIntOrNull() == null) {
+                // 날짜가 아니라면
                 binding.image.visibility = View.GONE
             } else {
+                // 날짜 표시 가능한 부분이라면
                 binding.date.setTextColor(Color.parseColor("#FFFFFF"))
                 if (calendarData.data != null) {
                     binding.imgUrl = calendarData.data.imageUrl

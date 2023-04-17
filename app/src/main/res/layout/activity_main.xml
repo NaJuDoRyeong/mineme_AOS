@@ -38,7 +38,6 @@
 
             </com.google.android.material.appbar.AppBarLayout>
 
-
             <androidx.fragment.app.FragmentContainerView
                 android:id="@+id/fragment_containerView"
                 android:name="androidx.navigation.fragment.NavHostFragment"
@@ -46,7 +45,6 @@
                 android:layout_height="match_parent"
                 app:defaultNavHost="true"
                 app:navGraph="@navigation/nav_main" />
-
         </LinearLayout>
 
 
@@ -55,10 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            app:elevation="9dp"
-            app:fabAlignmentMode="center"
-            app:fabAnchorMode="cradle"
-            app:removeEmbeddedFabElevation="false">
+            app:elevation="9dp">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomNavigationView"
@@ -71,18 +66,6 @@
                 app:menu="@menu/bottom_nav_menu" />
 
         </com.google.android.material.bottomappbar.BottomAppBar>
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginBottom="20dp"
-            android:contentDescription="TODO"
-            android:src="@drawable/bottom_center"
-            app:fabSize="normal"
-            app:layout_anchor="@id/bottomAppBar"
-            app:maxImageSize="47dp"
-            app:tint="@null" />
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>

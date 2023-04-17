@@ -19,50 +19,29 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class SplashActivity : AppCompatActivity() {
 
+    @Inject lateinit var mainActivityClass: Class<*>
+
     private lateinit var navController: NavController
     private lateinit var binding: ActivitySplashBinding
-    private val viewModel: SplashViewModel by viewModels()
+    private val splashViewModel: SplashViewModel by viewModels()
 
-    @Inject lateinit var mainActivityClass: Class<*>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         checkJWT()
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
     }
 
-
     // todo Viewmodel에 가지고 있는 datastore객체에 값을 가져오면 실행할 callback을 정의해서 viewModel에 넘긴다
-    fun checkJWT() {
-        Log.d("test", "checkJWT")
-        viewModel.getJsonWebToken { JWT ->
+    private fun checkJWT() {
+        splashViewModel.withJsonWebToken { JWT ->
             if (JWT != null) {
-                Log.d("test", "startHome")
-                startHomeActivity()
+                Log.d("buddyTest","$JWT")
+                LoginUtil.startMainActivity(this, mainActivityClass)
             } else {
-                Log.d("test", "nojwt")
-                isFirst { permissionNum ->
-                    // 처음이아님 => 카카오 로그인만 다시
-                    if (permissionNum == OnBoardingViewPagerFragment.viewpagerNum) {
-                        Log.d("test", "nofirst")
-                        LoginUtil.loginWithKaKao(this) { token ->
-                            viewModel.signup(token = token!!) {
-                                // 로그인 됐다면 다시 jwt 확인
-                                Log.d("test", "startHome")
-                                startHomeActivity()
-                                checkJWT()
-                            }
-                        }
-                    } else {
-                        //처음이면 온보딩
-                        initNav()
-                    }
-                }
+                Log.d("buddyTest","JWT널")
+                initNav()
             }
         }
-    }
-
-    fun startHomeActivity(){
-        LoginUtil.startMainActivity(this, mainActivityClass)
     }
 
     private fun initNav() {
@@ -72,11 +51,5 @@ class SplashActivity : AppCompatActivity() {
         binding.fragmentContainerView.visibility = View.VISIBLE
     }
 
-    //todo 최초 접속인지 즉 온보딩안했는지
-    private fun isFirst(callback: (Int?) -> Unit) {
-        viewModel.checkPermission { permissionNum ->
-            callback.invoke(permissionNum)
-        }
-    }
 
 }

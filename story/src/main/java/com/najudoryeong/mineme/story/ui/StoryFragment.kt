@@ -1,10 +1,6 @@
 package com.najudoryeong.mineme.story.ui
 
-import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.najudoryeong.mineme.common_ui.BaseFragment
 import com.najudoryeong.mineme.common_ui.CalendarUtil
 import com.najudoryeong.mineme.common_ui.DialogForDateNoDay
+import com.najudoryeong.mineme.common_ui.ToastType
 import com.najudoryeong.mineme.story.CalendarAdapter
 import com.najudoryeong.mineme.story.R
 import com.najudoryeong.mineme.story.databinding.FragmentStoryBinding
@@ -37,11 +34,12 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(StoryFoundationInfo) {
     override fun initView() {
 
         (activity as AppCompatActivity).run {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
             supportActionBar?.setHomeAsUpIndicator(R.drawable.img_story_menu)
         }
 
+
         binding.apply {
+
             this.lifecycleOwner = viewLifecycleOwner
             this.adapter = storyOutAdapter
             this.viewModel = storyViewModel
@@ -49,7 +47,9 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(StoryFoundationInfo) {
                 storyViewModel.raedStory {
                     swiperefreshlayout.isRefreshing = false
                 }
+                storyViewModel.setToastMessage("스토리 갱신",ToastType.INFO)
             }
+
             this.calendarDate.text = CalendarUtil.getTodayDateNoDay()
             this.calendarDate.setOnClickListener {
                 DialogForDateNoDay.Builder(requireContext())
@@ -87,8 +87,6 @@ class StoryFragment : BaseFragment<FragmentStoryBinding>(StoryFoundationInfo) {
     }
 
     private fun initCalendarView() {
-
-
         binding.apply {
             calendarRecyclerView.visibility = View.VISIBLE
             calendarDate.visibility = View.VISIBLE

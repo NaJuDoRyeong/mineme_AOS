@@ -1,12 +1,14 @@
 package com.najudoryeong.mineme
 
+
 import androidx.lifecycle.ViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+
 
 
 class MainViewModel : ViewModel() {
 
+
+    }
 /*
     private val _toolbarTitle = MutableLiveData<String>()
     val toolbarTitle: LiveData<String>
@@ -33,4 +35,3 @@ class MainViewModel : ViewModel() {
         _visibilityTopAppBar.value = visibilityMode
     }
 */
-}

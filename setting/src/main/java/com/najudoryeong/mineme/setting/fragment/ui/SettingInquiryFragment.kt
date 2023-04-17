@@ -7,7 +7,6 @@ import com.najudoryeong.mineme.setting.databinding.FragmentSettingInquiryBinding
 
 
 class SettingInquiryFragment : BaseFragment<FragmentSettingInquiryBinding>(SettingInquiry) {
-
     override fun initView() {
         binding.apply {
 

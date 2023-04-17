@@ -8,6 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.najudoryeong.mineme.common.domain.entity.Story
 import com.najudoryeong.mineme.story.domain.entity.StoryListWithDate
 import com.najudoryeong.mineme.common.domain.usecase.DataStoreUseCase
+import com.najudoryeong.mineme.common_ui.ToastType
 import com.najudoryeong.mineme.story.R
 import com.najudoryeong.mineme.story.domain.usecase.StoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -83,24 +84,23 @@ class StoryViewModel @Inject constructor(
         viewModelScope.launch {
             _isApiLoading.value = true
             _storyList.value = dummy
-            try {
-                storyUseCase.readStoryList(dataStoreUseCase.bearerJsonWebToken.first()!!).let {
-                    _storyList.value = it.toMutableList()
-                }
-            } catch (e: Exception) {
-                // 값을 초기화해서 구독자가 알아차릴 수 있게
-            }
+//            try {
+//                storyUseCase.readStoryList(dataStoreUseCase.bearerJsonWebToken.first()!!).let {
+//                    _storyList.value = it.toMutableList()
+//                }
+//            } catch (e: Exception) {
+//                // 값을 초기화해서 구독자가 알아차릴 수 있게
+//            }
             endApiCallBack.invoke()
             _isApiLoading.value = false
         }
     }
 
-    fun postNewStory() {
+    fun createStory() {
         viewModelScope.launch {
             _isApiLoading.value = true
             try {
                 storyUseCase.readStoryList(dataStoreUseCase.bearerJsonWebToken.first()!!).let {
-
                 }
             } catch (e: Exception) {
 
@@ -109,9 +109,9 @@ class StoryViewModel @Inject constructor(
     }
 
 
-    fun setToastMessage(newMessage: String) {
+    fun setToastMessage(newMessage: String, toastType: ToastType) {
         _toastMessage.value = ""
-        _toastMessage.value = newMessage
+        _toastMessage.value = "${toastType.icon}   $newMessage"
     }
 
     fun setImage(newUriList: List<Uri>) {

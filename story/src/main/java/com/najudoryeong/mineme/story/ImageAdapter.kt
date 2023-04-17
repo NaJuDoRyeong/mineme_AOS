@@ -3,6 +3,7 @@ package com.najudoryeong.mineme.story
 import android.net.Uri
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
