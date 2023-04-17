@@ -37,55 +37,43 @@ private val imageArray = arrayOf(R.drawable.img_gps, R.drawable.img_gps, R.drawa
 @AndroidEntryPoint
 class OnBoardingViewPagerFragment : Fragment(), PermissionCallback {
 
-    companion object {
-        var viewpagerNum = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) 3 else 2
-    }
-
-    private val viewModel: SplashViewModel by viewModels()
-
-    //todo ViewBindingPropertyDelegate
+    private val viewpagerNum = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) 3 else 2
     private var _binding: FragmentOnBoardingViewPagerBinding? = null
     private val binding get() = _binding!!
+
     private val requestPermissionLauncher = PermissionObject.checkPermission(this, { onSuccess() }, { onFail() })
-
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentOnBoardingViewPagerBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.viewPager2.let {
             it.adapter = OnBoardingViewPagerAdapter(this)
             binding.indicator.setViewPager(it)
         }
 
         binding.nextButton.setOnClickListener {
-
             val index = binding.viewPager2.currentItem
-
             DialogForPermission.Builder(requireContext())
                 .setMessage(messageArray[index])
                 .setImg(imageArray[index])
                 .setOnClickButton {
                     requestPermissionLauncher.launch(PermissionType.values()[index].permissionArray)
                 }.build().show()
-
         }
-
     }
-
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-
 
     private inner class OnBoardingViewPagerAdapter(fragment: Fragment) :
         FragmentStateAdapter(fragment) {
@@ -103,7 +91,6 @@ class OnBoardingViewPagerFragment : Fragment(), PermissionCallback {
     override fun onSuccess() {
         if (binding.viewPager2.currentItem == viewpagerNum - 1) {
             findNavController().navigate(R.id.next)
-            viewModel.setViewPagerNum(viewpagerNum)
         }
         binding.viewPager2.currentItem++
     }

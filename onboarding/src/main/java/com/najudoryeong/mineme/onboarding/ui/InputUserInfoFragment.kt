@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.najudoryeong.mineme.common.data.dto.UserInfoRequest
 import com.najudoryeong.mineme.onboarding.R
 import com.najudoryeong.mineme.onboarding.databinding.FragmentInputUserInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,14 +30,7 @@ class InputUserInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.nextButton.setOnClickListener {
-            viewModel.withJsonWebToken { JWT ->
-                /*
-                viewModel.inputUserInfo(JWT!!,
-                    UserInfoRequest(binding.userName.text.toString(),binding.userBirthDay.text.toString())
-                ){
-                    findNavController().navigate(R.id.next)
-                }
-                 */
+            viewModel.inputUserInfo(binding.nameEt.text.toString(),binding.birthDayEt.text.toString()){
                 findNavController().navigate(R.id.next)
             }
         }

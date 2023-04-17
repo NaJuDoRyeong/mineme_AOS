@@ -16,15 +16,11 @@ class DataStoreUseCase @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) {
 
-
     val bearerJsonWebToken: Flow<String?> =
         dataStore.data.map { preferences -> preferences[jsonWebToken_key]?.toBearerToken() }
 
     val myCode: Flow<String?> =
         dataStore.data.map { preferences -> preferences[user_code] }
-
-    val permissionNum: Flow<Int?> =
-        dataStore.data.map { preferences -> preferences[permission_num] }
 
     private fun String.toBearerToken(): String = "Bearer $this"
 
@@ -42,18 +38,10 @@ class DataStoreUseCase @Inject constructor(
         }
     }
 
-    suspend fun editPermissionNum(num: Int) {
-        dataStore.edit {
-            it[permission_num] = num
-        }
-    }
-
 
     companion object {
         const val DATA_STORE_NAME = "app"
-
         private val jsonWebToken_key = stringPreferencesKey("JSON_WEB_TOKEN")
-        private val permission_num = intPreferencesKey("PERMISSION_NUM")
         private val user_code = stringPreferencesKey("USER_CODE")
     }
 

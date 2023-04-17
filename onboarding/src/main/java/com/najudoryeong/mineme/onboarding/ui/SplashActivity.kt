@@ -31,23 +31,23 @@ class SplashActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_splash)
     }
 
-    // todo Viewmodel에 가지고 있는 datastore객체에 값을 가져오면 실행할 callback을 정의해서 viewModel에 넘긴다
+    /** 기기에 JWT가 있는지 검사합니다.
+        --> JWT가 있다면 MainActivity로 이동
+        --> JWT가 없다면 온보딩을 시작합니다.
+     **/
     private fun checkJWT() {
         splashViewModel.withJsonWebToken { JWT ->
             if (JWT != null) {
-                Log.d("buddyTest","$JWT")
                 LoginUtil.startMainActivity(this, mainActivityClass)
             } else {
-                Log.d("buddyTest","JWT널")
-                initNav()
+                startOnBoarding()
             }
         }
     }
 
-    private fun initNav() {
+    private fun startOnBoarding() {
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.fragment_containerView) as NavHostFragment
         navController = navHostFragment.navController
-        binding.splashScreen.visibility = View.GONE
         binding.fragmentContainerView.visibility = View.VISIBLE
     }
 
