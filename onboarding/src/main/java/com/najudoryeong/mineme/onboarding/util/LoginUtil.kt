@@ -1,4 +1,4 @@
-package com.najudoryeong.mineme.onboarding
+package com.najudoryeong.mineme.onboarding.util
 
 import android.app.Activity
 import android.content.Context

@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import com.najudoryeong.mineme.onboarding.LoginUtil
+import com.najudoryeong.mineme.onboarding.util.LoginUtil
 import com.najudoryeong.mineme.onboarding.R
 import com.najudoryeong.mineme.onboarding.databinding.FragmentLoginBinding
 import dagger.hilt.android.AndroidEntryPoint

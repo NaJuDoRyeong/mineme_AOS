@@ -25,6 +25,13 @@ class SplashViewModel @Inject constructor(
         }
     }
 
+    /** 사용자가 진행항 로그인 진행 상황 불러오는 함수**/
+    fun withLoginState(callback: (String?) -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            callback.invoke(dataStoreUseCase.loginState.first())
+        }
+    }
+
     /** 카카오 소셜 로그인으로 받아온 토큰을 서버에 전송해 JWT를 반환받는 함수 **/
     fun signup(token: String, createCallback: () -> Unit, loginCallback: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -44,7 +51,7 @@ class SplashViewModel @Inject constructor(
         }
     }
 
-    /** user의 정보를 보내는 함수 **/
+    /** user의 정보를 등록하는 함수 **/
     fun inputUserInfo(nickname: String, birthday: String, successCallback: () -> Unit) {
         viewModelScope.launch(Dispatchers.IO) {
             val token = dataStoreUseCase.bearerJsonWebToken.first()
@@ -55,6 +62,7 @@ class SplashViewModel @Inject constructor(
         }
     }
 
+    /** couple의 code를 등록하는 함수 **/
     fun inputCouleCode(inputCode: String){
         viewModelScope.launch(Dispatchers.IO) {
             val token = dataStoreUseCase.bearerJsonWebToken.first()
